@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        #box{
+            width: 200px;
+            height: 200px;
+            background: pink;
+        }
+        #box2{
+            /*position: absolute;
+            top: 0;
+            left: 0;*/  /*文字内容被覆盖*/
+
+            /*float: left;*/  /*文字环绕被挤压*/
+
+            margin-left: -200px;/*文字内容透过来*/
+
+            width: 200px;
+            height: 200px;
+            background: green;
+        }
+    </style>
+</head>
+<body>
+    <!--<div id="box2"></div> float-->
+    <div id="box">boxboxboxboxboxboxbox</div>
+    <div id="box2"></div>
+
+    <!--1.定位和浮动会脱离文档流
+        2.margin为负值不会脱离文档流-->
+</body>
+</html>

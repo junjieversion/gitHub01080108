@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+    </script>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        body {
+            min-width: 600px;
+        }
+        #header, #footer {
+            width: 100%;
+            height: 50px;
+            background: grey;
+            text-align: center;
+            line-height: 50px;
+        }
+        #content {
+            overflow: hidden;
+            padding: 0 200px;
+        }
+        #left, #right {
+            width: 200px;
+            background: pink;
+        }
+        #middle {
+            width: 100%;
+            background: aqua;
+        }
+        #right, #left, #middle {
+            float: left;
+            padding-bottom: 1000px;
+            margin-bottom: -1000px;
+        }
+        #left {
+            position: relative;
+            top: 0;
+            left: -200px;
+            margin-left: -100%;
+        }
+        #right {
+            position: relative;
+            top: 0;
+            right: -200px;
+            margin-left: -200px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="header">header</div>
+    <div id="content">
+        <div id="middle">
+            middle<br>
+            middle<br>
+            middle<br>
+            middle<br>
+            middle<br>
+        </div>
+        <div id="left">left</div>
+        <div id="right">right</div>
+    </div>
+    <div id="footer">footer</div>
+</body>
+</html>
