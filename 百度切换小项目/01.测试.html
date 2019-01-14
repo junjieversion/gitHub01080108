@@ -20,8 +20,9 @@
         }
 
         #wrap {
+            position: relative;
             width: 290px;
-            background: pink;
+            /*background: pink;*/
             margin-left: 100px;
             margin-top: 100px;
         }
@@ -46,15 +47,26 @@
         #tab1 {
             right: 47px;
             border-bottom: 1px solid #ffffff;
+            font-size: 14px;
+            color: rgb(51,51,51);
         }
 
         #tab2 {
             right: 0;
+            font-size: 14px;
+            color: rgb(153,153,153);
         }
 
-        #content {
+        #content,#content2 {
+            position: absolute;
+            top: 30px;
+            left: 0;
             width: 100%;
             /*background: aquamarine;*/
+        }
+
+        #content2 {
+            display: none;
         }
 
         ul li {
@@ -92,6 +104,21 @@
             color: #bbbbbb;
         }
 
+        .author:hover {
+            text-decoration: underline;
+            color: aqua;
+        }
+
+        .title {
+            font-size: 14px;
+            color: #222222;
+        }
+
+        .title:hover {
+            text-decoration: underline;
+            color: aqua;
+        }
+
 
     </style>
 </head>
@@ -102,35 +129,110 @@
             <div id="tab2">周榜</div>
         </div>
         <div id="content">
+        <ul>
+            <li>
+                <span class="icon1"></span>
+                <a href="###" class="title">标题1</a>
+                <a href="###" class="author">作者1</a>
+            </li>
+            <li>
+                <span class="icon2"></span>
+                <a href="###" class="title">标题1</a>
+                <a href="###" class="author">作者1</a>
+            </li>
+            <li>
+                <span class="icon3"></span>
+                <a href="###" class="title">标题1</a>
+                <a href="###" class="author">作者1</a>
+            </li>
+            <li>
+                <span class="icon4"></span>
+                <a href="###" class="title">标题1</a>
+                <a href="###" class="author">作者1</a>
+            </li>
+            <li>
+                <span class="icon5"></span>
+                <a href="###" class="title">标题1</a>
+                <a href="###" class="author">作者1</a>
+            </li>
+        </ul>
+
+    </div>
+        <div id="content2">
             <ul>
                 <li>
                     <span class="icon1"></span>
-                    <a href="###">标题1</a>
-                    <a href="###" class="author">作者1</a>
+                    <a href="###" class="title">标题2</a>
+                    <a href="###" class="author">作者2</a>
                 </li>
                 <li>
                     <span class="icon2"></span>
-                    <a href="###">标题1</a>
-                    <a href="###" class="author">作者1</a>
+                    <a href="###" class="title">标题2</a>
+                    <a href="###" class="author">作者2</a>
                 </li>
                 <li>
                     <span class="icon3"></span>
-                    <a href="###">标题1</a>
-                    <a href="###" class="author">作者1</a>
+                    <a href="###" class="title">标题2</a>
+                    <a href="###" class="author">作者2</a>
                 </li>
                 <li>
                     <span class="icon4"></span>
-                    <a href="###">标题1</a>
-                    <a href="###" class="author">作者1</a>
+                    <a href="###" class="title">标题2</a>
+                    <a href="###" class="author">作者2</a>
                 </li>
                 <li>
                     <span class="icon5"></span>
-                    <a href="###">标题1</a>
-                    <a href="###" class="author">作者1</a>
+                    <a href="###" class="title">标题2</a>
+                    <a href="###" class="author">作者2</a>
                 </li>
             </ul>
 
         </div>
     </div>
 </body>
+<script type="text/javascript">
+    var tab_head = document.getElementById('tab_head');
+    var tab1 = document.getElementById('tab1');
+    var tab2 = document.getElementById('tab2');
+    var content = document.getElementById('content');
+    var content2 = document.getElementById('content2');
+
+
+
+    tab_head.onmouseover = function (event) {
+        var event = event || window.event;
+
+        var targetGarm = event.target;
+
+        if (targetGarm == tab1) {
+            //tab1 为白色
+            tab1.style.borderBottom = '1px solid #ffffff';
+            tab1.style.color = 'rgb(51,51,51)';
+
+            //tab2
+            tab2.style.borderBottom = '1px solid #ececec';
+            tab2.style.color = 'rgb(153,153,153)';
+
+            //content内容区域
+            content.style.display = 'block';
+            content2.style.display = 'none';
+
+        }
+
+        if (targetGarm == tab2) {
+            //tab2 为白色
+            tab2.style.borderBottom = '1px solid #ffffff';
+            tab2.style.color = 'rgb(51,51,51)';
+
+            //tab1
+            tab1.style.borderBottom = '1px solid #ececec';
+            tab1.style.color = 'rgb(153,153,153)';
+
+            //content2内容区域
+            content.style.display = 'none';
+            content2.style.display = 'block';
+        }
+    }
+
+</script>
 </html>
