@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+    </script>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        ul{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        #nav {
+            width: 805px;
+            height: 81px;
+            /*background: green;*/
+        }
+
+        #nav li {
+            float: left;
+            width: 130px;
+            height: 81px;
+            margin-right: 5px;
+        }
+
+        #nav li img {
+            width: 100%;
+        }
+
+        #nav .lastLi {
+            margin-right: 0;
+        }
+
+        #banner {
+            position: relative;
+            width: 805px;
+            height: 505px;
+            /*background: #2c4855;*/
+        }
+
+        #banner li {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 805px;
+            height: 500px;
+
+        }
+
+        #banner li img {
+            width: 805px;
+            height: 500px;
+        }
+
+        #banner .firstLi {
+            z-index: 1;
+        }
+
+        #banner li:target {
+            z-index: 5;
+        }
+
+    </style>
+</head>
+<body>
+
+    <ul id="banner">
+        <li id="pic01" class="firstLi"><img src="img/jd001.jpg" alt=""></li>
+        <li id="pic02"><img src="img/jd002.jpg" alt=""></li>
+        <li id="pic03"><img src="img/jd003.jpg" alt=""></li>
+        <li id="pic04"><img src="img/jd004.jpg" alt=""></li>
+        <li id="pic05"><img src="img/jd005.jpg" alt=""></li>
+        <li id="pic06"><img src="img/jd006.jpg" alt=""></li>
+    </ul>
+    <ul id="nav">
+        <li><a href="#pic01"><img src="img/jd001.jpg" alt=""></a></li>
+        <li><a href="#pic02"><img src="img/jd002.jpg" alt=""></a></li>
+        <li><a href="#pic03"><img src="img/jd003.jpg" alt=""></a></li>
+        <li><a href="#pic04"><img src="img/jd004.jpg" alt=""></a></li>
+        <li><a href="#pic05"><img src="img/jd005.jpg" alt=""></a></li>
+        <li class="lastLi"><a href="#pic06"><img src="img/jd006.jpg" alt=""></a></li>
+    </ul>
+
+</body>
+</html>
