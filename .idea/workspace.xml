@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="98236db5-b09b-495b-adbe-086482580ff1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/百度切换小项目/01.测试.html" beforeDir="false" afterPath="$PROJECT_DIR$/百度切换小项目/01.测试.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/psd图头部布局/css/css.css" beforeDir="false" afterPath="$PROJECT_DIR$/psd图头部布局/css/css.css" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -18,11 +18,12 @@
       <usages-collector id="statistics.lifecycle.project">
         <counts>
           <entry key="project.closed" value="4" />
+          <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.21" value="1" />
           <entry key="project.open.time.29" value="1" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="4" />
+          <entry key="project.opened" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -41,13 +42,13 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="css" value="584" />
+          <entry key="css" value="585" />
           <entry key="html" value="1672" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="CSS" value="584" />
+          <entry key="CSS" value="585" />
           <entry key="HTML" value="1672" />
         </counts>
       </usages-collector>
@@ -91,8 +92,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/psd图头部布局/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="121" column="21" selection-start-line="121" selection-start-column="21" selection-end-line="121" selection-end-column="21" />
+            <state relative-caret-position="342">
+              <caret line="128" column="30" selection-start-line="128" selection-start-column="22" selection-end-line="128" selection-end-column="30" />
               <folding>
                 <element signature="n#div#0;n#body#0;n#html#0;n#!!top" />
                 <element signature="n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
@@ -107,7 +108,7 @@
         <entry file="file://E:/day03/day03/11.项目2/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="361">
-              <caret line="126" lean-forward="true" selection-start-line="126" selection-end-line="126" />
+              <caret line="126" selection-start-line="126" selection-end-line="126" />
               <folding>
                 <element signature="n#div#0;n#body#0;n#html#0;n#!!top" />
               </folding>
@@ -118,8 +119,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://E:/day03/day03/11.项目2/css/index.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-466">
-              <caret line="120" column="20" lean-forward="true" selection-start-line="120" selection-start-column="20" selection-end-line="120" selection-end-column="20" />
+            <state relative-caret-position="171">
+              <caret line="134" selection-start-line="134" selection-end-line="141" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -127,8 +128,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/psd图头部布局/css/css.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="332">
-              <caret line="160" column="5" lean-forward="true" selection-start-line="160" selection-start-column="5" selection-end-line="160" selection-end-column="5" />
+            <state relative-caret-position="503">
+              <caret line="169" column="1" selection-start-line="169" selection-start-column="1" selection-end-line="169" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -171,8 +172,8 @@
         <option value="$PROJECT_DIR$/测试/圣杯布局测试.html" />
         <option value="$PROJECT_DIR$/背景/02.按钮.html" />
         <option value="$PROJECT_DIR$/百度切换小项目/01.测试.html" />
-        <option value="$PROJECT_DIR$/psd图头部布局/css/css.css" />
         <option value="$PROJECT_DIR$/psd图头部布局/index.html" />
+        <option value="$PROJECT_DIR$/psd图头部布局/css/css.css" />
       </list>
     </option>
   </component>
@@ -277,14 +278,16 @@
       <workItem from="1547178617961" duration="5616000" />
       <workItem from="1547269747065" duration="15422000" />
       <workItem from="1547346247072" duration="5205000" />
+      <workItem from="1547433471410" duration="41000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="56952000" />
+    <option name="totallyTimeSpent" value="56993000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14136904" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -401,7 +404,7 @@
     <entry file="file://E:/day03/day03/11.项目2/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="361">
-          <caret line="126" lean-forward="true" selection-start-line="126" selection-end-line="126" />
+          <caret line="126" selection-start-line="126" selection-end-line="126" />
           <folding>
             <element signature="n#div#0;n#body#0;n#html#0;n#!!top" />
           </folding>
@@ -410,8 +413,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/psd图头部布局/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="121" column="21" selection-start-line="121" selection-start-column="21" selection-end-line="121" selection-end-column="21" />
+        <state relative-caret-position="342">
+          <caret line="128" column="30" selection-start-line="128" selection-start-column="22" selection-end-line="128" selection-end-column="30" />
           <folding>
             <element signature="n#div#0;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
@@ -423,15 +426,15 @@
     </entry>
     <entry file="file://E:/day03/day03/11.项目2/css/index.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-466">
-          <caret line="120" column="20" lean-forward="true" selection-start-line="120" selection-start-column="20" selection-end-line="120" selection-end-column="20" />
+        <state relative-caret-position="171">
+          <caret line="134" selection-start-line="134" selection-end-line="141" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/psd图头部布局/css/css.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="160" column="5" lean-forward="true" selection-start-line="160" selection-start-column="5" selection-end-line="160" selection-end-column="5" />
+        <state relative-caret-position="503">
+          <caret line="169" column="1" selection-start-line="169" selection-start-column="1" selection-end-line="169" selection-end-column="1" />
         </state>
       </provider>
     </entry>
