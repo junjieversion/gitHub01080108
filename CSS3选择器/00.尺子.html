@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+    </script>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #rule {
+            list-style: none;
+            margin: 100px 0 0 100px;
+            height: 80px;
+            /*background: deeppink;*/
+        }
+
+        #rule li {
+            float: left;
+            width: 2px;
+            height: 8px;
+            background: #000;
+            margin-right: 5px;
+        }
+
+        #rule li:nth-child(10n+6) {
+            width: 4px;
+            height: 12px;
+        }
+
+        #rule li:nth-child(10n+1) {
+            width: 4px;
+            height: 16px;
+        }
+    </style>
+</head>
+<body>
+    <ul id="rule">
+
+    </ul>
+</body>
+<script type="text/javascript">
+    var rule = document.getElementById('rule');
+
+    //刻度数量
+    var num = 100;
+    var str = '';
+    for (var i = 0; i < num; i++) {
+        str += '<li></li>';
+    }
+    rule.innerHTML = str;
+</script>
+</html>
