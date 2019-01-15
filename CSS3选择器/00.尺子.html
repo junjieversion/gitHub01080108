@@ -15,10 +15,12 @@
             list-style: none;
             margin: 100px 0 0 100px;
             height: 80px;
-            /*background: deeppink;*/
+            background: deeppink;
+            width: 10000px;
         }
 
         #rule li {
+            position: relative;
             float: left;
             width: 2px;
             height: 8px;
@@ -34,19 +36,38 @@
         #rule li:nth-child(10n+1) {
             width: 4px;
             height: 16px;
+
+            /*在CSS中定义自增函数*/
+            counter-increment: num;
+        }
+
+        #rule li:nth-child(10n):before {
+            /*从1开始自增*/
+            content: counter(num)'0';
+            /*微元素添加成子元素*/
+            position: absolute;
+            left: 0;
+            top: 20px;
+        }
+
+        #rule li:first-child:before {
+            content: '0';
+            position: absolute;
+            left: 0;
+            top: 20px;
         }
     </style>
 </head>
 <body>
     <ul id="rule">
 
-    </ul>
+</ul>
 </body>
 <script type="text/javascript">
     var rule = document.getElementById('rule');
 
     //刻度数量
-    var num = 100;
+    var num = 300;
     var str = '';
     for (var i = 0; i < num; i++) {
         str += '<li></li>';
