@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="98236db5-b09b-495b-adbe-086482580ff1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/CSS3选择器/02.A border.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CSS3选择器/03.frogCase.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CSS3选择器/img/frog.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CSS3选择器/02.A border.html" beforeDir="false" afterPath="$PROJECT_DIR$/CSS3选择器/02.aBorder.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -97,22 +100,22 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="html" value="15" />
+          <entry key="html" value="17" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="HTML" value="15" />
+          <entry key="HTML" value="17" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="html" value="1239" />
+          <entry key="html" value="1444" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="1239" />
+          <entry key="HTML" value="1444" />
         </counts>
       </usages-collector>
     </session>
@@ -120,19 +123,17 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://D:/baiduyun/4.CSS3和移动端/day05/day05/02.边框与圆角/01.边框.html">
+        <entry file="file://D:/baiduyun/4.CSS3和移动端/day05/day05/02.边框与圆角/02.圆角.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="646">
-              <caret line="34" column="14" lean-forward="true" selection-start-line="23" selection-start-column="12" selection-end-line="34" selection-end-column="14" />
-            </state>
+            <state relative-caret-position="-248" />
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/CSS3选择器/02.A border.html">
+        <entry file="file://$PROJECT_DIR$/CSS3选择器/03.frogCase.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="646">
-              <caret line="34" column="14" selection-start-line="34" selection-start-column="14" selection-end-line="34" selection-end-column="14" />
+            <state relative-caret-position="569">
+              <caret line="50" column="31" lean-forward="true" selection-start-line="50" selection-start-column="31" selection-end-line="50" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -187,6 +188,8 @@
         <option value="$PROJECT_DIR$/CSS3选择器/img.html" />
         <option value="$PROJECT_DIR$/CSS3选择器/01.伪元素_文章列表.html" />
         <option value="$PROJECT_DIR$/CSS3选择器/02.A border.html" />
+        <option value="$PROJECT_DIR$/CSS3选择器/03.frog case.html" />
+        <option value="$PROJECT_DIR$/CSS3选择器/03.frogCase.html" />
       </list>
     </option>
   </component>
@@ -238,12 +241,15 @@
     <property name="settings.editor.selected.configurable" value="fileTemplates" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\桌面\test\gitHub01080108\CSS3选择器\img" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\桌面\test\gitHub01080108\CSS3选择器" />
       <recent name="E:\桌面\test\gitHub01080108\CSS3选择器\img" />
       <recent name="E:\桌面\test\gitHub01080108\a标签图片切换\img" />
       <recent name="E:\test\psd图头部布局\img" />
       <recent name="E:\桌面\test\百度切换小项目\img" />
-      <recent name="E:\桌面\test\背景\img" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -279,12 +285,12 @@
       <workItem from="1547433471410" duration="41000" />
       <workItem from="1547466803911" duration="7787000" />
       <workItem from="1547543724611" duration="6791000" />
-      <workItem from="1547608032684" duration="5367000" />
+      <workItem from="1547608032684" duration="7773000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="76938000" />
+    <option name="totallyTimeSpent" value="79344000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="974" height="1058" extended-state="0" />
@@ -487,15 +493,27 @@
     </entry>
     <entry file="file://D:/baiduyun/4.CSS3和移动端/day05/day05/02.边框与圆角/01.边框.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="34" column="14" lean-forward="true" selection-start-line="23" selection-start-column="12" selection-end-line="34" selection-end-column="14" />
+        <state relative-caret-position="152">
+          <caret line="8" column="23" lean-forward="true" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CSS3选择器/02.A border.html">
+    <entry file="file://$PROJECT_DIR$/CSS3选择器/02.aBorder.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="646">
           <caret line="34" column="14" selection-start-line="34" selection-start-column="14" selection-end-line="34" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/baiduyun/4.CSS3和移动端/day05/day05/02.边框与圆角/02.圆角.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-248" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CSS3选择器/03.frogCase.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="569">
+          <caret line="50" column="31" lean-forward="true" selection-start-line="50" selection-start-column="31" selection-end-line="50" selection-end-column="31" />
         </state>
       </provider>
     </entry>
