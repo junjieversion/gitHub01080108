@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+    </script>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        #list {
+            list-style: none;
+            margin: 100px 0 0 100px;
+        }
+
+        #list li {
+            line-height: 2;
+        }
+
+        /*#list li:before {
+            content: '';
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            background: green;
+            vertical-align: middle;
+            margin-right: 20px;
+
+
+        }*/
+
+        #list li a[href$='.doc']:before {
+            content: '';
+            width: 24px;
+            height: 24px;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 20px;
+            background: url("img/icon_doc.png") no-repeat;
+        }
+
+        #list li a[href$='.xls']:before {
+            content: '';
+            width: 24px;
+            height: 24px;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 20px;
+            background: url("img/icon_xls.png") no-repeat;
+        }
+
+        #list li a[href$='.pdf']:before {
+            content: '';
+            width: 24px;
+            height: 24px;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 20px;
+            background: url("img/icon_pdf.png") no-repeat;
+        }
+
+        #list li a[href$='.mp3']:before {
+            content: '';
+            width: 24px;
+            height: 24px;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 20px;
+            background: url("img/icon_mpg(1).png") no-repeat;
+        }
+
+        #list li a[href$='.txt']:before {
+            content: '';
+            width: 24px;
+            height: 24px;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 20px;
+            background: url("img/icon_txt.png") no-repeat;
+        }
+
+        #list li a[href$='.xml']:before {
+            content: '';
+            width: 24px;
+            height: 24px;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 20px;
+            background: url("img/icon_xml.png") no-repeat;
+        }
+    </style>
+</head>
+<body>
+    <ul id="list">
+        <li><a href="test.doc">世界真其美妙.doc</a></li>
+        <li><a href="test.xls">销售报表.xls</a></li>
+        <li><a href="test.pdf">JS权威指南.pdf</a></li>
+        <li><a href="test.mp3">南山南.mp3</a></li>
+        <li><a href="test.txt">aaa.txt</a></li>
+        <li><a href="test.xml">bbb.xml</a></li>
+    </ul>
+
+</body>
+</html>
