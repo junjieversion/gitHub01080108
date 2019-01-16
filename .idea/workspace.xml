@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="98236db5-b09b-495b-adbe-086482580ff1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/CSS3选择器/01.伪元素_文章列表.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CSS3选择器/img/icon_doc.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CSS3选择器/img/icon_mpg(1).png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CSS3选择器/img/icon_pdf.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CSS3选择器/img/icon_txt.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CSS3选择器/img/icon_xls.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CSS3选择器/img/icon_xml.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CSS3选择器/00.尺子.html" beforeDir="false" afterPath="$PROJECT_DIR$/CSS3选择器/00.尺子.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CSS3选择器/02.A border.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -105,42 +97,42 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="html" value="13" />
+          <entry key="html" value="15" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="HTML" value="13" />
+          <entry key="HTML" value="15" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="html" value="1129" />
+          <entry key="html" value="1239" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="1129" />
+          <entry key="HTML" value="1239" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/CSS3选择器/01.伪元素_文章列表.html">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://D:/baiduyun/4.CSS3和移动端/day05/day05/02.边框与圆角/01.边框.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-267">
-              <caret line="56" column="9" lean-forward="true" selection-start-line="56" selection-start-column="9" selection-end-line="56" selection-end-column="9" />
+            <state relative-caret-position="646">
+              <caret line="34" column="14" lean-forward="true" selection-start-line="23" selection-start-column="12" selection-end-line="34" selection-end-column="14" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://D:/baiduyun/4.CSS3和移动端/day04/day04/05.伪元素/02.案例文章列表.html">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/CSS3选择器/02.A border.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="626">
-              <caret line="83" column="38" selection-start-line="83" selection-start-column="31" selection-end-line="83" selection-end-column="38" />
+            <state relative-caret-position="646">
+              <caret line="34" column="14" selection-start-line="34" selection-start-column="14" selection-end-line="34" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -194,6 +186,7 @@
         <option value="D:/baiduyun/4.CSS3和移动端/day04/day04/05.伪元素/02.案例文章列表.html" />
         <option value="$PROJECT_DIR$/CSS3选择器/img.html" />
         <option value="$PROJECT_DIR$/CSS3选择器/01.伪元素_文章列表.html" />
+        <option value="$PROJECT_DIR$/CSS3选择器/02.A border.html" />
       </list>
     </option>
   </component>
@@ -286,12 +279,12 @@
       <workItem from="1547433471410" duration="41000" />
       <workItem from="1547466803911" duration="7787000" />
       <workItem from="1547543724611" duration="6791000" />
-      <workItem from="1547608032684" duration="4770000" />
+      <workItem from="1547608032684" duration="5367000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="76341000" />
+    <option name="totallyTimeSpent" value="76938000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="974" height="1058" extended-state="0" />
@@ -480,15 +473,29 @@
     </entry>
     <entry file="file://D:/baiduyun/4.CSS3和移动端/day04/day04/05.伪元素/02.案例文章列表.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="626">
-          <caret line="83" column="38" selection-start-line="83" selection-start-column="31" selection-end-line="83" selection-end-column="38" />
+        <state relative-caret-position="341">
+          <caret line="68" column="35" lean-forward="true" selection-start-line="68" selection-start-column="35" selection-end-line="68" selection-end-column="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CSS3选择器/01.伪元素_文章列表.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-267">
+        <state relative-caret-position="75">
           <caret line="56" column="9" lean-forward="true" selection-start-line="56" selection-start-column="9" selection-end-line="56" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/baiduyun/4.CSS3和移动端/day05/day05/02.边框与圆角/01.边框.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="34" column="14" lean-forward="true" selection-start-line="23" selection-start-column="12" selection-end-line="34" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CSS3选择器/02.A border.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="34" column="14" selection-start-line="34" selection-start-column="14" selection-end-line="34" selection-end-column="14" />
         </state>
       </provider>
     </entry>
