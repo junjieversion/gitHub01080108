@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+    </script>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            background: #F0F0F0;
+        }
+
+        #box {
+            position: relative;
+            margin: 100px auto;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            /*background: pink;*/
+        }
+
+        #box_left, #box_right {
+            position: absolute;
+            width: 150px;
+            height: 300px;
+        }
+
+        #box_left {
+            top: 0;
+            left: 0;
+            background: #000;
+            border-radius: 150px 0 0 150px;
+        }
+
+        #box_right {
+            top: 0;
+            right: 0;
+            background: #ffffff;
+            border-radius: 0 150px 150px 0;
+        }
+
+        #box_top, #box_bottom {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+
+            text-align: center;
+            line-height: 150px;
+        }
+
+        #box_top{
+            top: 0;
+            left: 75px;
+            background: #000;
+        }
+
+        #box_bottom {
+            bottom: 0;
+            left: 75px;
+            background: #ffffff;
+        }
+
+        #box_top span, #box_bottom span {
+            display: inline-block;
+            vertical-align: middle;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+        
+        #box_top span {
+             background: #FFF;
+         }
+        
+        #box_bottom span {
+            background: #000;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div id="box_left"></div>
+        <div id="box_right"></div>
+        <div id="box_top">
+            <span></span>
+        </div>
+        <div id="box_bottom">
+            <span></span>
+        </div>
+    </div>
+</body>
+</html>
