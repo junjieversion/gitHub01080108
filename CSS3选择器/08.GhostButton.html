@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+    </script>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #wrap {
+            position: relative;
+            margin: 100px auto;
+            width: 300px;
+            height: 80px;
+            background-color: #AEB4D6;
+            text-align: center;
+            line-height: 80px;
+            color: #FFFFFF;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 35px;
+
+            transition: 2s;
+        }
+
+        #top, #bottom {
+            position: absolute;
+            width: 0;
+            height: 8px;
+            /*background-color: #AEB4D6;*/
+            transition: 1.5s;
+        }
+
+        #top {
+            top: 0;
+            left: 0;
+        }
+
+        #bottom {
+            bottom: 0;
+            right: 0;
+        }
+
+        #wrap:hover {
+            background-color: #FFFFFF;
+            color: #AEB4D6;
+        }
+
+        #wrap:hover #top,#wrap:hover #bottom {
+            background-color: #AEB4D6;
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div id="top"></div>
+        html5
+        <div id="bottom"></div>
+    </div>
+</body>
+</html>
