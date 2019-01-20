@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+    </script>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #content {
+            margin: 100px auto 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #wrapBg, #can {
+            position: absolute;
+        }
+
+        #wrapBg {
+            top: 10px;
+            left: 0;
+        }
+
+        #can {
+            top: 0;
+            left: 0;
+        }
+
+        #wrapBg img{
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <div id="wrapBg">
+            <img src="img/coke_bg.jpg" alt="">
+            <img src="img/coke_bg.jpg" alt="">
+        </div>
+        <div id="can">
+            <img src="img/coke_can.png" alt="">
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+    window.onload = function () {
+        var content = document.getElementById('content');
+        var canImg = document.querySelector('#can img');
+        var wrapBg = document.getElementById('wrapBg');
+        var wrapImg = document.querySelectorAll('#wrapBg img');
+
+
+
+        //获取元素整体宽高
+            //获取第一张元素值
+        var wrapImgW = wrapImg[0].offsetWidth;
+        var canImgW = canImg.offsetWidth;
+        var canImgH = canImg.offsetHeight;
+
+        content.style.width = canImgW + 'px';
+        content.style.height = canImgH + 'px';
+
+        //设置两张轮播图容器大小，足够放下两张图片
+        wrapBg.style.width = wrapImgW*2 + 'px';
+
+        //图片向左移动
+        var dis = 0;
+        setInterval(function () {
+            dis--;
+
+            //解决空白
+            if (Math.abs(dis) >= wrapImgW) {
+                dis = 0;
+            }
+            wrapBg.style.transform = 'translate('+ dis +'px)';
+        },20)
+
+    }
+</script>
+</html>
