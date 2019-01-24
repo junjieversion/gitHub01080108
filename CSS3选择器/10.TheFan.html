@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+    </script>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #wrap {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            width: 50px;
+            height: 50px;
+            /*background: green;*/
+        }
+
+        #home {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50px;
+            height: 50px;
+            background-image: url("img/home.png");
+            background-repeat: no-repeat;
+            border-radius: 50%;
+            z-index: 200;
+
+            /*图片旋转过渡时间*/
+            transition: 1.5s;
+        }
+
+        #list {
+            position: relative;
+            left: 4px;
+            top: 4px;
+            width: 42px;
+            height: 42px;
+        }
+
+        #list img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+<div id="wrap">
+    <div id="home"></div>
+    <div id="list">
+        <img src="img/clos.png" alt="">
+        <img src="img/full.png" alt="">
+        <img src="img/open.png" alt="">
+        <img src="img/prev.png" alt="">
+        <img src="img/refresh.png" alt="">
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    window.onload = function () {
+        var home = document.getElementById('home');
+        var imgNodes = document.querySelectorAll('#list img');
+        var c = 150;
+
+        var flag = true;
+
+        home.onclick = function () {
+            if (flag) {
+                home.style.transform = 'rotate(-360deg)';
+
+                //图片出来
+                for (var i = 0; i < imgNodes.length; i++) {
+                    imgNodes[i].style.top = -getPoint(c, (90 / (imgNodes.length - 1) * i)).top + 'px';
+                    imgNodes[i].style.left = -getPoint(c, (90 / (imgNodes.length - 1) * i)).left + 'px';
+                    imgNodes[i].style.transition = '0.5s ' + (i * 0.1) + 's';
+                    imgNodes[i].style.transform = 'rotate(-720deg) scale(1)';
+
+                }
+
+            } else {
+                home.style.transform = 'rotate(0deg)';
+
+                //图片回来
+                for (var i = 0; i < imgNodes.length; i++) {
+                    imgNodes[i].style.top = 0;
+                    imgNodes[i].style.left = 0;
+                    imgNodes[i].style.transition = '0.5s ' + (0.1 * (imgNodes.length - i - 1)) + 's';
+                    imgNodes[i].style.transform = 'rotate(0deg) scale(1)';
+
+                }
+
+            }
+
+            flag = !flag;
+        }
+
+        //left top
+        function getPoint(c, deg) {
+            /*
+            * 度数 * PI / 180 = 弧度
+            * */
+            var left = c * Math.sin(deg * Math.PI / 180);
+            var top = c * Math.cos(deg * Math.PI / 180);
+            return {left: left, top: top};
+        }
+
+        for (var i = 0; i < imgNodes.length; i++) {
+            imgNodes[i].onclick = function () {
+                //图片放大
+                this.style.transform = 'rotate(-720deg) scale(2)';
+                //透明度降低
+                this.style.opacity = '0.4';
+                this.style.transition = '0.5s';
+
+                //检测过渡结束之后的状态
+                /*
+                * transitionEnd 兼容
+                *
+                * 解绑
+                * */
+                this.addEventListener('transitionEnd', fun);
+                //移动端低版本浏览器
+                this.addEventListener('webkitTransitionEnd', fun);
+
+                function fun() {
+                    this.style.transform = 'rotate(-720deg) scale(1)';
+                    this.style.opacity = '1';
+                    this.style.transition = '0.2s';
+
+                    //解绑(性能考虑，省流量)
+                    this.removeEventListener('transitionEnd', fun);
+                    this.removeEventListener('webkitTransitionEnd', fun);
+                }
+            }
+
+        }
+
+    }
+</script>
+</html>
