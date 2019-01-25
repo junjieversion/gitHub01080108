@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+    </script>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #wrap {
+            width: 300px;
+            height: 300px;
+            margin: 100px auto;
+            background: rgba(200,0,0,0.3);
+
+            transform-style: preserve-3d;
+        }
+
+        #box1 {
+            width: 150px;
+            height: 150px;
+            background: blue;
+
+            transform: perspective(200px) translateZ(-100px);
+        }
+
+        #box2 {
+            width: 150px;
+            height: 150px;
+            background: deeppink;
+            transform: translateZ(-100px);
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div id="box1"></div>
+        <div id="box2"></div>
+    </div>
+</body>
+</html>
