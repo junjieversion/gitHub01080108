@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+    </script>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #box {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200px;
+            height: 200px;
+            background: rgba(200, 0, 0, 0.3);
+        }
+
+
+    </style>
+</head>
+<body>
+<a href="http://www.baidu.com">baidu</a>
+<div id="box"></div>
+</body>
+<script type="text/javascript">
+    //禁止系统默认行为(真机)
+    document.addEventListener('touchstart',function (event) {
+        event.preventDefault();
+    });
+
+    var box = document.getElementById('box');
+    var a = document.getElementsByClassName('a')[0];
+
+    //touchstart执行，盒子消失
+    //300ms后执行click，链接跳转;pc端不能直接使用click
+    box.addEventListener('touchstart',function () {
+        box.style.display = 'none';
+    });
+
+    //a跳转
+    a.addEventListener('touchstart',function (event) {
+        event.stopPropagation();
+    })
+</script>
+</html>
