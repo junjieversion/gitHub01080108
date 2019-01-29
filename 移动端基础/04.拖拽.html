@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #box {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: pink;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+</body>
+<script type="text/javascript">
+    var box = document.getElementById('box');
+
+    //定义元素初始位置
+    var elementPoint = {left: 0, top: 0};
+    //定义鼠标初始位置
+    var mousePoint = {left: 0, top: 0};
+
+    //dom0
+    box.onmousedown = function (event) {
+        event = event || window.event;
+        //鼠标初始位置
+        mousePoint.left = event.clientX;
+        mousePoint.top = event.clientY;
+
+        //元素初始位置
+        elementPoint.left = box.offsetLeft;
+        elementPoint.top = box.offsetTop;
+
+        box.onmousemove = function (event) {
+            event = event || window.event;
+            //鼠标结束位置
+            var endPoint = {left: 0, top: 0};
+            endPoint.left = event.clientX;
+            endPoint.top = event.clientY;
+
+            //鼠标距离差
+            var disX = endPoint.left - mousePoint.left;
+            var disY = endPoint.top - mousePoint.top;
+
+            //元素动起来
+            box.style.left = disX + elementPoint.left + 'px';
+            box.style.top = disY + elementPoint.top + 'px';
+        }
+        box.onmouseup = function () {
+            box.onmousemove = null;
+            box.onmouseup = null;
+        }
+    };
+
+
+</script>
+</html>
