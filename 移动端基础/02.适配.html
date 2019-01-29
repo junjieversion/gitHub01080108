@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+    </script>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #box {
+            width: 8rem;
+            height: 8rem;
+            background: pink;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+</body>
+<script type="text/javascript">
+    /*var width = document.documentElement.clientWidth;
+    var html = document.getElementsByTagName('html')[0];
+    html.style.fontSize = width + 'px';*/
+
+    //优化
+    //rem适配
+    (function () {
+        var width = document.documentElement.clientWidth;
+        var html = document.getElementsByTagName('html')[0];
+        var styleNode = document.createElement('style');
+        styleNode.innerHTML = 'html{font-size: '+ width/16 +'px !important;}';
+        document.head.appendChild(styleNode);
+    })();
+
+    //viewport
+    (function () {
+        var width = document.documentElement.clientWidth;
+        var targetW = 320;
+        var scale = width/targetW;
+        var metaN = document.querySelector('meta[name="viewport"]');
+        metaN.setAttribute('content','initial-scale=' + scale);
+    })();
+    
+    //1物理像素适配
+    (function () {
+        var dpr = window.devicePixelRatio;
+        var scale = 1/dpr;
+        var width = document.documentElement.clientWidth;//375
+        var metaN = document.querySelector('meta[name="viewport"]');
+        metaN.setAttribute('content','initial-scale=' + scale);
+        var styleN = document.createElement('style');
+        styleN.innerHTML = 'html{font-size: '+ (width*dpr) +'px !important;}';
+        document.head.appendChild(styleN);
+    })()
+</script>
+</html>
