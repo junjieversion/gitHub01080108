@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+    </script>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #box {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: pink;
+        }
+
+        #others{
+            position: absolute;
+            top: 200px;
+            left: 400px;
+            width: 300px;
+            height: 300px;
+            background: yellowgreen;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<div id="others"></div>
+</body>
+<script type="text/javascript">
+    window.onload = function () {
+        var box = document.getElementById('box');
+
+        //定义元素初始位置
+        var eleP = {left: 0, top: 0};
+        //定义鼠标初始位置
+        var startP = {left: 0, top: 0};
+
+        box.onmousedown = function (event) {
+            event = event || window.event;
+            //元素初始位置
+            eleP.left = box.offsetLeft;
+            eleP.top = box.offsetTop;
+            //鼠标初始位置
+            startP.left = event.clientX;
+            startP.top = event.clientY;
+
+            document.onmousemove = function (event) {
+                event = event || window.event;
+
+                //鼠标最终位置
+                var endP = {left:0,top:0};
+                endP.left = event.clientX;
+                endP.top = event.clientY;
+
+                //鼠标距离差
+                var disX = endP.left - startP.left;
+                var disY = endP.top - startP.top;
+
+                //确定元素位置
+                box.style.left = disX + eleP.left + 'px';
+                box.style.top = disY + eleP.top + 'px';
+            };
+
+            document.onmouseup = function () {
+                document.onmousemove = null;
+                box.onmouseup = null;
+            }
+        };
+
+
+    }
+</script>
+</html>
