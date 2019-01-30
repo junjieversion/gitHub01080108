@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script>
+
     </script>
     <style type="text/css">
         * {
@@ -13,29 +14,33 @@
 
         #box {
             position: absolute;
-            width: 200px;
-            height: 200px;
-            background: pink;
+            z-index: 5;
+            width: 100px;
+            height: 100px;
+            background: deeppink;
         }
 
-        #others{
+        #others {
             position: absolute;
             top: 200px;
-            left: 400px;
-            width: 300px;
-            height: 300px;
-            background: yellowgreen;
+            left: 500px;
+            width: 320px;
+            height: 250px;
+            background-image: url("img/a.png");
+            background-repeat: no-repeat;
+            background-size: 300px;
         }
+
     </style>
 </head>
 <body>
-一颗枣树两颗枣树三棵枣树
 <div id="box"></div>
 <div id="others"></div>
 </body>
 <script type="text/javascript">
     window.onload = function () {
         var box = document.getElementById('box');
+        var imgN = document.querySelector('#others');
 
         //定义元素初始位置
         var eleP = {left: 0, top: 0};
@@ -82,6 +87,29 @@
 
                 box.style.left = left + 'px';
                 box.style.top = top + 'px';
+
+                //九宫格碰撞
+                var L1 = box.getBoundingClientRect().left;
+                var T1 = box.getBoundingClientRect().top;
+                var R1 = box.getBoundingClientRect().right;
+                var B1 = box.getBoundingClientRect().bottom;
+
+                var L2 = imgN.getBoundingClientRect().left;
+                var T2 = imgN.getBoundingClientRect().top;
+                var R2 = imgN.getBoundingClientRect().right;
+                var B2 = imgN.getBoundingClientRect().bottom;
+                
+                if (R1 < L2 || B1 < T2 || T1 > B2 || L1 > R2) {
+                    //没有碰撞
+                    console.log(1111);
+                    imgN.style.backgroundImage = 'url(img/a.png)';
+                }else {
+                    //碰撞
+                    console.log(222);
+                    imgN.style.backgroundImage = 'url(img/b.jpg)';
+                }
+
+
             };
 
             document.onmouseup = function () {
