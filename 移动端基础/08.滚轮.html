@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+    </script>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #box {
+            width: 100px;
+            height: 100px;
+            background: pink;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+</body>
+<script type="text/javascript">
+    var box = document.getElementById('box');
+
+    //ie/chrome
+    box.onmousewheel = fun;
+
+    //firefox
+    box.addEventListener('DOMMouseScroll');
+
+    function fun(event) {
+        event = event || window.event;
+    }
+</script>
+</html>
