@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+    </script>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        html,body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        #wrap {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40px;
+            height: 100%;
+            background: gray;
+        }
+
+        #inner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 40px;
+            height: 60px;
+            background: deeppink;
+        }
+
+        #content {
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<div id="content">
+
+</div>
+<div id="wrap">
+    <div id="inner">
+
+
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    var inner = document.getElementById('inner');
+    var content = document.getElementById('content');
+
+    //造文本
+    var text = '';
+    for (var i=0; i<1000;i++) {
+        text += i + '<br>';
+    }
+    content.innerHTML = text;
+
+    //高度比例
+    var scale = document.documentElement.clientHeight / content.offsetHeight;
+    inner.style.height = document.documentElement.clientHeight * scale + 'px';
+
+    //
+    window.onresize = function () {
+        var scale = document.documentElement.clientHeight / content.offsetHeight;
+        inner.style.height = document.documentElement.clientHeight * scale + 'px';
+    }
+
+    var eleY = 0;
+    var startY = 0;
+
+    inner.onmousedown = function (event) {
+        event = event || window.event;
+
+        eleY = inner.offsetTop;
+        startY = event.clientY;
+        document.onmousemove = function (event) {
+            event = event || window.event;
+
+            var endY = event.clientY;
+
+            var disY = endY - startY;
+            var top  = eleY + disY;
+            
+            if (top < 0) {
+                top = 0;
+            }else if (top > document.documentElement.clientHeight - inner.offsetHeight) {
+                top = document.documentElement.clientHeight - inner.offsetHeight;
+            }
+
+            inner.style.top = top + 'px';
+
+            // var scale = top/(document.documentElement.clientHeight - inner.offsetHeight);
+            // content.style.top = (document.documentElement.clientHeight - content.offsetHeight)*scale + 'px';
+            content.style.top = - top/scale + 'px';
+
+        }
+
+        document.onmouseup = function () {
+            document.onmousemove = document.onmouseup = null;
+        }
+        return false;
+
+    }
+</script>
+</html>

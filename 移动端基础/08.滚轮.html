@@ -32,6 +32,51 @@
 
     function fun(event) {
         event = event || window.event;
+
+        //鼠标滚轮方向
+        var flag = '';
+        if (event.wheelDelta) {
+            //ie/chrome
+            if (event.wheelDelta > 0) {
+                //上
+                flag = 'up';
+            } else {
+                //下
+                flag = 'down';
+            }
+        } else if (event.detail) {
+            //firefox
+            if (event.detail > 0) {
+                //下
+                flag = 'down';
+            }else {
+                //上
+                flag = 'up';
+            }
+        }
+
+        //根据flag的值，向上走什么逻辑向下走什么逻辑
+        switch (flag) {
+            case 'up':
+                //盒子高度减小
+                box.style.height = box.offsetHeight - 10 + 'px';
+                break;
+            case 'down':
+                box.style.height = box.offsetHeight + 10 + 'px';
+                break;
+        };
+
+        /*
+			 return false阻止的是  dom0 所触发的默认行为
+			 dom2 需要通过event下面的event.preventDefault();
+			 * */
+        //dom2
+        if(event.preventDefault){
+            event.preventDefault();
+        };
+        //dom0
+        return false;
+
     }
 </script>
 </html>
