@@ -107,5 +107,70 @@
         return false;
 
     }
+
+    //滚轮事件
+    //ie/chrome
+    document.onmousewheel = fun;
+    //火狐
+    if (document.addEventListener) {
+        document.addEventListener('DOMMouseScroll',fun);
+    };
+
+
+    function fun(event) {
+        event = event || window.event;
+
+        var flag = '';
+        var add = 0;
+        if (event.wheelDelta) {
+            //ie/chrome
+            if (event.wheelDelta > 0) {
+                //上
+                flag = 'up';
+                add = -10;
+            } else {
+                //下
+                flag = 'down';
+                add = 10;
+            }
+        } else if (event.delete) {
+            //火狐
+            if (event.delete > 0) {
+                //下
+                flag = 'down';
+                add = 10;
+            } else {
+                //上
+                flag = 'up';
+                add = -10;
+            }
+        }
+
+        var innerTop = inner.offsetTop + add;
+        //范围限定
+        if (innerTop < 0) {
+            innerTop = 0;
+        } else if (innerTop > document.documentElement.clientHeight - inner.offsetHeight) {
+            innerTop = document.documentElement.clientHeight - inner.offsetHeight;
+        }
+        switch (flag) {
+            case 'up':
+                //滚动条top值变小
+                inner.style.top = innerTop + 'px';
+                //内容偏移量 = 滚动条的偏移量 / scale1
+                content.style.top = - innerTop / scale + 'px';
+                break;
+            case 'down':
+                //滚动条top值变大
+                inner.style.top = innerTop + 'px';
+                //内容偏移量 = 滚动条的偏移量 / scale1
+                content.style.top = - innerTop / scale + 'px';
+                break;
+        }
+
+        event.preventDefault && event.preventDefault();
+        return false;
+    };
+
 </script>
 </html>
