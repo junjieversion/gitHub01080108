@@ -108,12 +108,15 @@
         var startX = 0;
 
         var disX = 0;
+        var translateX = 0;
         wrap.addEventListener('touchstart', function (event) {
             var touch = event.changedTouches[0];
 
             //手指初始位置
-            elementX = list.offsetLeft;
+            // elementX = list.offsetLeft;
+            elementX = translateX;
             startX = touch.clientX;
+
         });
         wrap.addEventListener('touchmove', function (event) {
             var touch = event.changedTouches[0];
@@ -125,15 +128,19 @@
             disX = endX - startX;
 
             //元素位置
-            var left = disX + elementX;
+            // var left = disX + elementX;
 
-            list.style.left = left + 'px';
+            // list.style.left = left + 'px';
+
+            translateX = disX + elementX;
+            list.style.transform = 'translateX('+ translateX +'px)';
         });
         wrap.addEventListener('touchend', function () {
             var touch = event.changedTouches[0];
             //定义图片索引下标
             var now = 0;
-            var left = list.offsetLeft;
+            // var left = list.offsetLeft;
+            var left = translateX;
 
             //处理now值
             // now = left / document.documentElement.clientWidth
@@ -153,7 +160,12 @@
                 now = liNodes.length-1;
             }
 
-            list.style.left = - now * document.documentElement.clientWidth + 'px';
+            // list.style.left = - now * document.documentElement.clientWidth + 'px';
+
+            //处理2d变换
+            translateX = - now * document.documentElement.clientWidth;
+            list.style.transform = 'translateX('+ translateX +'px)';
+
 
 
             //处理小圆点
