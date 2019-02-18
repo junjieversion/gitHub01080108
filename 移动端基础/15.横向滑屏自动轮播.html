@@ -111,8 +111,14 @@
 
         var disX = 0;
         // var translateX = 0;
+        var timer = 0;
+        var now = 0;
+
         wrap.addEventListener('touchstart', function (event) {
             var touch = event.changedTouches[0];
+
+            //清除定时器
+            clearInterval(timer);
 
             //清除过渡
             list.style.transition = 'none';
@@ -160,7 +166,7 @@
         wrap.addEventListener('touchend', function () {
             var touch = event.changedTouches[0];
             //定义图片索引下标
-            var now = 0;
+            // var now = 0;
             // var left = list.offsetLeft;
             // var left = translateX;
             //读
@@ -200,38 +206,46 @@
                 spanNoses[i].className = '';
             }
             spanNoses[now % spanNoses.length].className = 'active';
+
+            //开启定时器
+            auto();
+
         });
 
 
         //自动轮播
         //模拟now
-        var autoFlag = 0;
+        auto();
+        function auto(){
+            //清除定时器
+            clearInterval(timer);
+            timer = setInterval(function () {
 
-        setInterval(function () {
+                //无缝
+                if (now == liNodes.length-1) {
+                    now = spanNoses.length-1;
+                };
+                //切换动作
+                //清除过渡
+                list.style.transition = 'none';
+                transformCss(list,'translateX', -now*document.documentElement.clientWidth);
 
-            //无缝
-            if (autoFlag == liNodes.length-1) {
-                autoFlag = spanNoses.length-1;
-            };
-            //切换动作
-            //清除过渡
-            list.style.transition = 'none';
-            transformCss(list,'translateX', -autoFlag*document.documentElement.clientWidth);
+                //延时
+                setTimeout(function(){
+                    now++;
+                    list.style.transition = '0.5s';
+                    transformCss(list, 'translateX', -now * document.documentElement.clientWidth);
 
-            //延时
-            setTimeout(function(){
-                autoFlag++;
-                list.style.transition = '0.5s';
-                transformCss(list, 'translateX', -autoFlag * document.documentElement.clientWidth);
+                    //处理小圆点
+                    for (var i = 0; i < spanNoses.length; i++) {
+                        spanNoses[i].className = '';
+                    }
+                    spanNoses[now % spanNoses.length].className = 'active';
+                },20);
 
-                //处理小圆点
-                for (var i = 0; i < spanNoses.length; i++) {
-                    spanNoses[i].className = '';
-                }
-                spanNoses[autoFlag % spanNoses.length].className = 'active';
-            },20);
+            }, 1000);
 
-        }, 1000);
+        };
 
     };
 </script>
