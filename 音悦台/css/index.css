@@ -1,0 +1,30 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+#wrap {
+  width: 100%;
+  height: 100%;
+  background: #eeeeee;
+}
+#logo {
+  width: 3.55555556rem;
+  height: 1.3037037rem;
+  line-height: 1.3037037rem;
+  padding: 0.38518519rem 0.25185185rem 0.31111111rem;
+}
+#header {
+  background: #232323;
+}
+#headerTop {
+  height: 2rem;
+}
+#logo img {
+  width: 100%;
+  vertical-align: middle;
+}
