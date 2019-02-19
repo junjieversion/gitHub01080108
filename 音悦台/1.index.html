@@ -137,20 +137,21 @@
 </body>
 <script type="text/javascript" src="js/transformCss.js"></script>
 <script type="text/javascript">
-    document.addEventListener('touchstart',function(event){
+    document.addEventListener('touchstart', function (event) {
         event.preventDefault();
     });
 
     //rem适配 自调函数
-    (function(){
+    (function () {
         var width = document.documentElement.clientWidth;
         var styleN = document.createElement('style');
-        styleN.innerHTML = 'html{font-size:'+ width/16 +'px !important;}';
+        styleN.innerHTML = 'html{font-size:' + width / 16 + 'px !important;}';
         document.head.appendChild(styleN);
     })();
 
     //导航交互
     navs();
+
     function navs() {
         var navsWrap = document.getElementById('navsWrap');
         var navsList = document.getElementById('navsList');
@@ -159,45 +160,82 @@
         var eleX = 0;
         var startX = 0;
 
-        navsWrap.addEventListener("touchstart", function (event) {
-           var touch = event.changedTouches[0];
+        //加速
+        var beginTime = 0;
+        var beginValue = 0;
+        var endTime = 0;
+        var endValue = 0;
+        //距离差时间差
+        var disTime = 1;
+        var disValue = 0;
 
-           eleX = transformCss(navsList,'translateX');
-           startX = touch.clientX;
+        navsWrap.addEventListener("touchstart", function (event) {
+            var touch = event.changedTouches[0];
+
+            eleX = transformCss(navsList, 'translateX');
+            startX = touch.clientX;
+
+            beginTime = new Date().getTime();//毫秒
+            beginValue = eleX;
 
         });
 
-        navsList.addEventListener("touchmove", function (event) {
-           var touch = event.changedTouches[0];
-           //手指结束位置
-           var endX = touch.clientX;
-           //手指距离差
-           var disX = endX - startX;
+        navsWrap.addEventListener("touchmove", function (event) {
+            var touch = event.changedTouches[0];
+            //手指结束位置
+            var endX = touch.clientX;
+            //手指距离差
+            var disX = endX - startX;
 
-           //范围限定
+            //范围限定
             var translateX = disX + eleX;
+            var scale = 0;
+            var minX = document.documentElement.clientWidth - navsList.offsetWidth;
             if (translateX > 0) {
-                translateX = 0;
-            } else if (translateX < document.documentElement.clientWidth - navsList.offsetWidth) {
-                translateX = document.documentElement.clientWidth - navsList.offsetWidth;
+                // translateX = 0;
+                //比例：越来越小
+                //    留白/屏幕宽度 （保证不同机型，实现相同效果）
+                //留白 逐渐增大 ，scale逐渐减小，   1-留白/屏幕宽度
+                scale = 1 - translateX/document.documentElement.clientWidth;
+
+                translateX = translateX*scale;
+            } else if (translateX < minX) {
+                // translateX = document.documentElement.clientWidth - navsList.offsetWidth;
+                var over = minX - translateX;
+                scale = 1 - over/document.documentElement.clientWidth;
+                translateX = minX - over*scale;
             }
 
-           transformCss(navsList,'translateX',disX+eleX);
+            transformCss(navsList, 'translateX', translateX);
+
+            endTime = new Date().getTime();
+            endValue = translateX;
+            disValue = endValue - beginValue;
+            disTime = endTime - beginTime;
 
         });
+
+        navsWrap.addEventListener("touchend", function (event) {
+            var touch = event.changedTouches[0];
+
+            //速度
+            var speed = disValue / disTime;
+            console.log(speed);
+        });
     }
-    
+
     //头部交互
     changeMenu();
+
     function changeMenu() {
-       var menuBtn = document.getElementById('menuBtn');
-       var list = document.getElementById('list');
+        var menuBtn = document.getElementById('menuBtn');
+        var list = document.getElementById('list');
 
         menuBtn.addEventListener("touchstart", function (event) {
             if (menuBtn.className == 'menuBtnClos') {
                 menuBtn.className = 'menuBtnOpen';
                 list.style.display = 'block';
-            }else if (menuBtn.className == 'menuBtnOpen') {
+            } else if (menuBtn.className == 'menuBtnOpen') {
                 menuBtn.className = 'menuBtnClos';
                 list.style.display = 'none';
             }
@@ -219,6 +257,6 @@
             event.stopPropagation();
         })
     }
-    
+
 </script>
 </html>
