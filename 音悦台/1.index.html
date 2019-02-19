@@ -19,16 +19,123 @@
             <a href="###" id="menuBtn" class="menuBtnClos"></a>
             <!--三个按钮-->
             <div id="navs">
-                <a href="###">搜索</a>
+                <a href="###" id="searchBtn">搜索</a>
                 <a href="###">登陆</a>
                 <a href="###">注册</a>
             </div>
         </div>
+        <!--
+                基线问题
+                float: right; 问题
+                行内元素转成快：display,浮动
+                元素选择器优先级（是否为同一个元素） --- 属性分开写，
+                    因为简写属性background，font有默认样式
+            -->
         <!--下半部-->
+        <form id="search">
+            <input type="text" placeholder="请输入搜索内容">
+            <input type="submit" value="搜索">
+        </form>
+        <!--
+					怪异盒模型 --- IE ：设置padding向里面挤（content-box）
+
+					<input type="text" placeholder="请输入搜索内容"/>
+					placeholder字体样式
+						::-webkit-input-placeholder
+
+					清除边框 :  border: none;
+					input:行内块元素
+				-->
+        <!--定位层-->
+        <ul id="list">
+            <li>
+                <a href="javascript:;">首页</a>
+            </li>
+            <li>
+                <a href="javascript:;">MV</a>
+            </li>
+            <li>
+                <a href="javascript:;">悦单</a>
+            </li>
+            <li>
+                <a href="javascript:;">V榜</a>
+            </li>
+            <li>
+                <a href="javascript:;">音悦</a>
+            </li>
+            <li>
+                <a href="javascript:;">商城</a>
+            </li>
+            <li>
+                <a href="javascript:;">节目</a>
+            </li>
+            <li>
+                <a href="javascript:;">饭团</a>
+            </li>
+            <li>
+                <a href="javascript:;">资讯</a>
+            </li>
+            <li>
+                <a href="javascript:;">我的家</a>
+            </li>
+            <li>
+                <a href="javascript:;">APP下载</a>
+            </li>
+            <li>
+                <a href="javascript:;">热门应用</a>
+            </li>
+        </ul>
     </div>
+
+    <!--内容区-->
+    <div id="content">
+        <!--导航-->
+        <div id="navsWrap">
+            <ul id="navsList">
+                <li class="active">
+                    <a href="javascript:;">首页</a>
+                </li>
+                <li>
+                    <a href="javascript:;">MV</a>
+                </li>
+                <li>
+                    <a href="javascript:;">悦单</a>
+                </li>
+                <li>
+                    <a href="javascript:;">V榜</a>
+                </li>
+                <li>
+                    <a href="javascript:;">音悦</a>
+                </li>
+                <li>
+                    <a href="javascript:;">商城</a>
+                </li>
+                <li>
+                    <a href="javascript:;">节目</a>
+                </li>
+                <li>
+                    <a href="javascript:;">饭团</a>
+                </li>
+                <li>
+                    <a href="javascript:;">资讯</a>
+                </li>
+                <li>
+                    <a href="javascript:;">我的家</a>
+                </li>
+                <li>
+                    <a href="javascript:;">APP下载</a>
+                </li>
+                <li>
+                    <a href="javascript:;">热门应用</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
 
 </div>
 </body>
+<script type="text/javascript" src="js/transformCss.js"></script>
 <script type="text/javascript">
     document.addEventListener('touchstart',function(event){
         event.preventDefault();
@@ -39,7 +146,79 @@
         var width = document.documentElement.clientWidth;
         var styleN = document.createElement('style');
         styleN.innerHTML = 'html{font-size:'+ width/16 +'px !important;}';
-        document.heade.appendChild(styleN);
+        document.head.appendChild(styleN);
     })();
+
+    //导航交互
+    navs();
+    function navs() {
+        var navsWrap = document.getElementById('navsWrap');
+        var navsList = document.getElementById('navsList');
+
+        //定义元素初始位置，手指初始位置
+        var eleX = 0;
+        var startX = 0;
+
+        navsWrap.addEventListener("touchstart", function (event) {
+           var touch = event.changedTouches[0];
+
+           eleX = transformCss(navsList,'translateX');
+           startX = touch.clientX;
+
+        });
+
+        navsList.addEventListener("touchmove", function (event) {
+           var touch = event.changedTouches[0];
+           //手指结束位置
+           var endX = touch.clientX;
+           //手指距离差
+           var disX = endX - startX;
+
+           //范围限定
+            var translateX = disX + eleX;
+            if (translateX > 0) {
+                translateX = 0;
+            } else if (translateX < document.documentElement.clientWidth - navsList.offsetWidth) {
+                translateX = document.documentElement.clientWidth - navsList.offsetWidth;
+            }
+
+           transformCss(navsList,'translateX',disX+eleX);
+
+        });
+    }
+    
+    //头部交互
+    changeMenu();
+    function changeMenu() {
+       var menuBtn = document.getElementById('menuBtn');
+       var list = document.getElementById('list');
+
+        menuBtn.addEventListener("touchstart", function (event) {
+            if (menuBtn.className == 'menuBtnClos') {
+                menuBtn.className = 'menuBtnOpen';
+                list.style.display = 'block';
+            }else if (menuBtn.className == 'menuBtnOpen') {
+                menuBtn.className = 'menuBtnClos';
+                list.style.display = 'none';
+            }
+
+            //取消冒泡
+            event.stopPropagation();
+        });
+
+        //点击其他区域，遮罩消失
+        document.addEventListener("touchstart", function () {
+            if (menuBtn.className == 'menuBtnOpen') {
+                menuBtn.className = 'menuBtnClos';
+                list.style.display = 'none';
+            }
+        });
+
+        list.addEventListener("touchstart", function (event) {
+            //取消冒泡
+            event.stopPropagation();
+        })
+    }
+    
 </script>
 </html>
