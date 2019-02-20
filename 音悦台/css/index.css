@@ -207,3 +207,8 @@ ul {
 #ban_navs .active {
   background: deeppink;
 }
+.tab {
+  width: 15.4962963rem;
+  background: #FFFFFF;
+  margin: 0 auto;
+}
