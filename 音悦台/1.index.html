@@ -130,6 +130,43 @@
                 </li>
             </ul>
         </div>
+        <!--无缝滑屏-->
+        <div id="ban_wrap">
+            <ul id="ban_list">
+                <li>
+                    <a href="###">
+                        <img src="img/1.jpg"/>
+                    </a>
+                </li>
+                <li>
+                    <a href="###">
+                        <img src="img/2.jpg"/>
+                    </a>
+                </li>
+                <li>
+                    <a href="###">
+                        <img src="img/3.jpg"/>
+                    </a>
+                </li>
+                <li>
+                    <a href="###">
+                        <img src="img/4.jpg"/>
+                    </a>
+                </li>
+                <li>
+                    <a href="###">
+                        <img src="img/5.jpg"/>
+                    </a>
+                </li>
+            </ul>
+            <div id="ban_navs">
+                <span class="active"></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
     </div>
 
 
@@ -149,8 +186,199 @@
         document.head.appendChild(styleN);
     })();
 
+
+    window.onload = function() {
+
+        changeMenu();
+        navs();
+        changeColor();
+        banner();
+
+    };
+
+
+    //banner区域
+
+    function banner() {
+
+        //获取元素
+        var wrap = document.getElementById('ban_wrap');
+        var list = document.getElementById('ban_list');
+        list.innerHTML += list.innerHTML;
+        var liNodes = document.querySelectorAll('#ban_list li');
+        var spanNoses = document.querySelectorAll('#ban_navs span');
+
+        //布局
+        var styleN = document.createElement('style');
+        styleN.innerHTML += '#ban_list {width: ' + liNodes.length + '00%;}';
+        styleN.innerHTML += '#ban_list li {width: ' + (100 / liNodes.length) + '%;}';
+        styleN.innerHTML += '#ban_wrap {height: ' + liNodes[0].offsetHeight + 'px;}';
+        document.head.appendChild(styleN);
+
+        //横向滑屏
+        //定义元素和手指初始位置
+        var elementX = 0;
+        var startX = 0;
+
+        var disX = 0;
+        // var translateX = 0;
+        var timer = 0;
+        var now = 0;
+
+        wrap.addEventListener('touchstart', function (event) {
+            var touch = event.changedTouches[0];
+
+            //清除定时器
+            clearInterval(timer);
+
+            //清除过渡
+            list.style.transition = 'none';
+
+            //无缝
+            var left = transformCss(list, 'translateX');
+            var now = Math.round(-left / document.documentElement.clientWidth);
+
+
+            if (now == 0) {
+                now = spanNoses.length;
+            } else if (now == liNodes.length - 1) {
+                now = spanNoses.length - 1;
+            }
+            //切换动作
+            transformCss(list, 'translateX', -now * document.documentElement.clientWidth);
+
+            //读
+            elementX = transformCss(list, 'translateX');
+            startX = touch.clientX;
+
+        });
+        wrap.addEventListener('touchmove', function (event) {
+            var touch = event.changedTouches[0];
+
+            //手指结束位置
+            var endX = touch.clientX;
+
+            //手指距离差
+            disX = endX - startX;
+
+            //写
+            transformCss(list, 'translateX', disX + elementX);
+        });
+        wrap.addEventListener('touchend', function () {
+            var touch = event.changedTouches[0];
+
+            //读
+            var left = transformCss(list, 'translateX');
+
+            now = Math.round(-left / document.documentElement.clientWidth);
+
+            //now范围
+            if (now < 0) {
+                now = 0;
+            } else if (now > liNodes.length - 1) {
+                now = liNodes.length - 1;
+            }
+
+            //写
+            //过渡
+            list.style.transition = '2s';
+            transformCss(list, 'translateX', -now * document.documentElement.clientWidth);
+
+
+            //处理小圆点
+            for (var i = 0; i < spanNoses.length; i++) {
+                spanNoses[i].className = '';
+            }
+            spanNoses[now % spanNoses.length].className = 'active';
+
+            //开启定时器
+            auto();
+
+        });
+
+
+        //自动轮播
+        //模拟now
+        auto();
+        function auto(){
+            //清除定时器
+            clearInterval(timer);
+            timer = setInterval(function () {
+
+                //无缝
+                if (now == liNodes.length-1) {
+                    now = spanNoses.length-1;
+                };
+                //切换动作
+                //清除过渡
+                list.style.transition = 'none';
+                transformCss(list,'translateX', -now*document.documentElement.clientWidth);
+
+                //延时
+                setTimeout(function(){
+                    now++;
+                    list.style.transition = '0.5s';
+                    transformCss(list, 'translateX', -now * document.documentElement.clientWidth);
+
+                    //处理小圆点
+                    for (var i = 0; i < spanNoses.length; i++) {
+                        spanNoses[i].className = '';
+                    }
+                    spanNoses[now % spanNoses.length].className = 'active';
+                },20);
+
+            }, 1000);
+
+        };
+
+    }
+
+
+    //点击变色
+
+    function changeColor() {
+
+        var liNodes = document.querySelectorAll('#navsList li');
+
+        //给所有li添加touchend
+        for (var i = 0; i < liNodes.length; i++) {
+
+            //误触
+            liNodes[i].addEventListener('touchmove', function () {
+                
+                if (!this.isMove) {
+
+                    this.isMove = true;
+
+                };
+                
+            });
+
+            liNodes[i].addEventListener('touchend', function () {
+                
+                if (!this.isMove) {
+
+                    //给每一个li添加className
+                    for (var j = 0; j < liNodes.length; j++) {
+
+                        liNodes[j].className = '';
+
+                    }
+
+                    this.className = 'active';
+
+                }
+
+                //重置
+                this.isMove = false;
+
+            });
+
+        }
+
+    }
+
     //导航交互
-    navs();
 
     function navs() {
         var navsWrap = document.getElementById('navsWrap');
@@ -172,11 +400,17 @@
         navsWrap.addEventListener("touchstart", function (event) {
             var touch = event.changedTouches[0];
 
+            //清除过渡
+            navsList.style.transition = 'none';
+
             eleX = transformCss(navsList, 'translateX');
             startX = touch.clientX;
 
             beginTime = new Date().getTime();//毫秒
             beginValue = eleX;
+
+            //清除速度
+            disValue = 0;
 
         });
 
@@ -196,14 +430,14 @@
                 //比例：越来越小
                 //    留白/屏幕宽度 （保证不同机型，实现相同效果）
                 //留白 逐渐增大 ，scale逐渐减小，   1-留白/屏幕宽度
-                scale = 1 - translateX/document.documentElement.clientWidth;
+                scale = 1 - translateX / document.documentElement.clientWidth;
 
-                translateX = translateX*scale;
+                translateX = translateX * scale;
             } else if (translateX < minX) {
                 // translateX = document.documentElement.clientWidth - navsList.offsetWidth;
                 var over = minX - translateX;
-                scale = 1 - over/document.documentElement.clientWidth;
-                translateX = minX - over*scale;
+                scale = 1 - over / document.documentElement.clientWidth;
+                translateX = minX - over * scale;
             }
 
             transformCss(navsList, 'translateX', translateX);
@@ -221,11 +455,27 @@
             //速度
             var speed = disValue / disTime;
             console.log(speed);
+            //目标位移距离 =  touchmove产生的距离 + 速度计算出的结果
+            var target = transformCss(navsList, 'translateX') + speed * 100;
+
+            var minX = document.documentElement.clientWidth - navsList.offsetWidth;
+            //橡皮筋回弹效果
+            var bezier = '';
+            if (target > 0) {
+                target = 0;
+                bezier = 'cubic-bezier(.09,1.61,.92,1.45)';
+            } else if (target < minX) {
+                target = minX;
+                bezier = 'cubic-bezier(.09,1.61,.92,1.45)';
+            }
+
+            navsList.style.transition = '2s ' + bezier;
+            transformCss(navsList, 'translateX', target);
+
         });
     }
 
     //头部交互
-    changeMenu();
 
     function changeMenu() {
         var menuBtn = document.getElementById('menuBtn');

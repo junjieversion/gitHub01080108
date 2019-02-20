@@ -126,6 +126,7 @@ ul {
   padding: 0.14814815rem 0;
   border-top: 1px solid #6a6a6a;
   background-color: rgba(0, 0, 0, 0.8);
+  z-index: 100;
 }
 #list li {
   float: left;
@@ -168,8 +169,41 @@ ul {
 #navsList .active a {
   color: #FFFFFF;
 }
-/*
-默认字体颜色: #020202;
-选中时背景颜色: #690;
-选中时字体颜色: #fff;
-	*/
+#ban_wrap {
+  position: relative;
+  width: 100%;
+}
+#ban_list {
+  position: absolute;
+  top: 0;
+  left: 0;
+  list-style: none;
+  overflow: hidden;
+}
+#ban_list li {
+  float: left;
+}
+#ban_list li img {
+  width: 100%;
+  display: block;
+}
+#ban_navs {
+  position: absolute;
+  left: 0;
+  bottom: 10px;
+  width: 100%;
+  height: 10px;
+  text-align: center;
+  line-height: 10px;
+}
+#ban_navs span {
+  display: inline-block;
+  vertical-align: middle;
+  width: 10px;
+  height: 10px;
+  background: gray;
+  border-radius: 50px;
+}
+#ban_navs .active {
+  background: deeppink;
+}
