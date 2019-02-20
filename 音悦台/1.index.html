@@ -225,6 +225,9 @@
         var timer = 0;
         var now = 0;
 
+        //防抖动
+        var startY = 0;
+
         wrap.addEventListener('touchstart', function (event) {
             var touch = event.changedTouches[0];
 
@@ -251,6 +254,8 @@
             elementX = transformCss(list, 'translateX');
             startX = touch.clientX;
 
+            startY = touch.clientY;
+
         });
         wrap.addEventListener('touchmove', function (event) {
             var touch = event.changedTouches[0];
@@ -260,6 +265,15 @@
 
             //手指距离差
             disX = endX - startX;
+
+            var endY = touch.clientY;
+            var disY = endY - startY;
+
+            if (Math.abs(disY) > Math.abs(disX)) {
+
+                return;
+
+            };
 
             //写
             transformCss(list, 'translateX', disX + elementX);
