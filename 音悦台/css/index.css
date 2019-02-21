@@ -212,3 +212,86 @@ ul {
   background: #FFFFFF;
   margin: 0 auto;
 }
+.tabHeader {
+  height: 2rem;
+  line-height: 2rem;
+}
+.tabHeader h2 {
+  float: left;
+  font-size: 1rem;
+}
+.tabHeader a {
+  float: right;
+  color: #000;
+  font-size: 0.7rem;
+}
+.tabNav {
+  position: relative;
+  height: 1.55555556rem;
+  line-height: 1.55555556rem;
+}
+.tabNav a {
+  float: left;
+  height: 1.55555556rem;
+  width: 1.77777778rem;
+  font-size: 0.65185185rem;
+  text-align: center;
+  color: #6b6b6b;
+}
+.tabNav span {
+  position: absolute;
+  left: 0;
+  bottom: 3px;
+  display: block;
+  width: 1.77777778rem;
+  height: 0.13333333rem;
+  background: #6f900d;
+}
+.tabList {
+  overflow: hidden;
+}
+.tabList li {
+  float: left;
+  box-sizing: border-box;
+  width: 7.4962963rem;
+  margin: 0.11851852rem;
+  padding: 0.07407407rem;
+  font-size: 0.59259259rem;
+  background: #EFEFEF;
+  color: #000000;
+}
+.tabList li img {
+  width: 100%;
+}
+.ice {
+  overflow: hidden;
+}
+.ice_left {
+  float: left;
+  margin-right: 10px;
+}
+.ice_right {
+  float: left;
+}
+.ice_pic {
+  display: inline-block;
+  width: 20px;
+  height: 17px;
+  background: url("../img/ice.png") no-repeat;
+  vertical-align: middle;
+}
+.ice_right .ice_pic {
+  background-position: 0 -19px;
+}
+.tabWrap {
+  overflow: hidden;
+  width: 300%;
+}
+.tabWrap ul {
+  width: 33.33333333%;
+  float: left;
+}
+.tabLoading {
+  height: 1.4962963rem;
+  background: url("../img/loading.gif") no-repeat center;
+}
