@@ -274,6 +274,112 @@
                 <ul class="tabLoading"></ul>
             </div>
         </div>
+        <div class="tab">
+            <div class="tabHeader">
+                <h2>MV首播</h2>
+                <a href="###">更多&gt;</a>
+            </div>
+            <!--导航标签nav 实质是div 被语义化-->
+            <nav class="tabNav">
+                <a href="###">全部</a>
+                <a href="###">内地</a>
+                <a href="###">港台</a>
+                <a href="###">欧美</a>
+                <a href="###">韩国</a>
+                <a href="###">日本</a>
+                <span></span>
+            </nav>
+            <div class="tabWrap">
+                <ul class="tabLoading"></ul>
+                <ul class="tabList">
+                    <li>
+                        <img src="img/a.jpg">
+                        <span>君に贈る花がない</span>
+                        <div class="ice">
+                            <div class="ice_left">
+                                <span class="ice_pic"></span>
+                                <span>9999</span>
+                            </div>
+                            <div class="ice_right">
+                                <span class="ice_pic"></span>
+                                <span>6</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="img/b.jpg">
+                        <span>君に贈る花がない</span>
+                        <div class="ice">
+                            <div class="ice_left">
+                                <span class="ice_pic"></span>
+                                <span>9999</span>
+                            </div>
+                            <div class="ice_right">
+                                <span class="ice_pic"></span>
+                                <span>6</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="img/c.jpg">
+                        <span>君に贈る花がない</span>
+                        <div class="ice">
+                            <div class="ice_left">
+                                <span class="ice_pic"></span>
+                                <span>9999</span>
+                            </div>
+                            <div class="ice_right">
+                                <span class="ice_pic"></span>
+                                <span>6</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="img/d.jpg">
+                        <span>君に贈る花がない</span>
+                        <div class="ice">
+                            <div class="ice_left">
+                                <span class="ice_pic"></span>
+                                <span>9999</span>
+                            </div>
+                            <div class="ice_right">
+                                <span class="ice_pic"></span>
+                                <span>6</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="img/e.jpg">
+                        <span>君に贈る花がない</span>
+                        <div class="ice">
+                            <div class="ice_left">
+                                <span class="ice_pic"></span>
+                                <span>9999</span>
+                            </div>
+                            <div class="ice_right">
+                                <span class="ice_pic"></span>
+                                <span>6</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="img/f.jpg">
+                        <span>君に贈る花がない</span>
+                        <div class="ice">
+                            <div class="ice_left">
+                                <span class="ice_pic"></span>
+                                <span>9999</span>
+                            </div>
+                            <div class="ice_right">
+                                <span class="ice_pic"></span>
+                                <span>6</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="tabLoading"></ul>
+            </div>
+        </div>
     </div>
 
 
@@ -300,8 +406,86 @@
         navs();
         changeColor();
         banner();
-
+        tab();
     };
+
+    //tab
+    function tab() {
+        var tabWrap = document.querySelectorAll('.tabWrap');
+        var tabNav = document.querySelectorAll('.tabNav');
+
+        var translateX = tabNav[0].clientWidth;
+        for (var i = 0; i < tabWrap.length; i++) {
+
+            move(tabWrap[i]);
+
+        };
+
+        function move(tabWrap) {
+            transformCss(tabWrap,'translateX', -translateX);
+
+            //横向滑屏
+            var eleX = 0;
+            var startX = 0;
+
+            //防抖动
+            var isFirst = true;
+            var isX = true;
+            var startY = 0;
+
+            tabWrap.addEventListener('touchstart', function(event){
+                var touch = event.changedTouches[0];
+
+                startX = touch.clientX;
+                eleX = transformCss(tabWrap,'translateX');
+
+                startY = touch.clientY;
+
+                //重置
+                isFirst = true;
+                isX = true;
+
+            });
+            tabWrap.addEventListener('touchmove', function (event) {
+                var touch = event.changedTouches[0];
+
+                if (!isX) {
+                    return;
+                }
+
+                var endX = touch.clientX;
+                var disX = endX - startX;
+
+                var endY = touch.clientY;
+                var disY = endY - startY;
+
+                if (isFirst) {
+                    isFirst = false;
+
+                    if (Math.abs(disY) > Math.abs(disX)) {
+
+                        isX = false;
+                        disX = 0;
+
+                    }
+
+                }
+
+                transformCss(tabWrap, 'translateX', disX + eleX);
+
+                //当手指划过1/2
+                if (Math.abs(disX) > translateX/2) {
+                    var target = disX > 0 ? 0 : -2*translateX;
+
+                    tabWrap.style.transition = '0.5s';
+
+                    transformCss(tabWrap, 'translateX', target);
+                }
+
+            });
+        }
+
+    }
 
 
     //banner区域
