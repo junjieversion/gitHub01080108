@@ -433,8 +433,21 @@
             var isX = true;
             var startY = 0;
 
+            //loading标识
+            var isLoad = false;
+
+            //loaddings
+            var loaddings = document.querySelectorAll('.tabLoading');
+
             tabWrap.addEventListener('touchstart', function(event){
                 var touch = event.changedTouches[0];
+
+                if (isLoad) {
+                    return;
+                } ;
+
+                //清楚过渡
+                tabWrap.style.transition = 'none';
 
                 startX = touch.clientX;
                 eleX = transformCss(tabWrap,'translateX');
@@ -448,6 +461,10 @@
             });
             tabWrap.addEventListener('touchmove', function (event) {
                 var touch = event.changedTouches[0];
+
+                if (isLoad) {
+                    return;
+                } ;
 
                 if (!isX) {
                     return;
@@ -477,12 +494,51 @@
                 if (Math.abs(disX) > translateX/2) {
                     var target = disX > 0 ? 0 : -2*translateX;
 
+                    //loading标识出现
+                    isLoad = true;
+
                     tabWrap.style.transition = '0.5s';
 
                     transformCss(tabWrap, 'translateX', target);
                 }
 
+                //过渡结束之后出现；兼容
+                tabWrap.addEventListener('transitionEnd', fun) ;
+                tabWrap.addEventListener('webkitTransitionEnd',fun);
+
+                function fun() {
+                    for (var i = 0; i < loaddings.length; i++) {
+                        loaddings[i].style.opacity = '1';
+                    }
+
+                    //解绑
+                    tabWrap.removeEventListener('transitionEnd', fun);
+                    tabWrap.removeEventListener('webkitTransitionEnd',fun);
+
+                }
+
             });
+            tabWrap.addEventListener('touchend', function(event){
+                    var touch = event.changedTouches[0];
+
+                    if (isLoad) {
+                        return;
+                    } ;
+
+                    var endX = touch.clientX;
+                    var disX = endX - startX;
+
+                    //手指没有划过1/2
+                    if (Math.abs(disX) < translateX/2) {
+
+                        //跳回当前页面
+                        tabWrap.style.transition = '0.2s';
+                        transformCss(tabWrap, 'translateX', -translateX);
+
+                    }
+
+            });
+
         }
 
     }

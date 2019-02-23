@@ -294,4 +294,5 @@ ul {
 .tabLoading {
   height: 1.4962963rem;
   background: url("../img/loading.gif") no-repeat center;
+  opacity: 0;
 }
