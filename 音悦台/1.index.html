@@ -400,7 +400,7 @@
     })();
 
 
-    window.onload = function() {
+    window.onload = function () {
 
         changeMenu();
         navs();
@@ -417,12 +417,14 @@
         var translateX = tabNav[0].clientWidth;
         for (var i = 0; i < tabWrap.length; i++) {
 
-            move(tabWrap[i]);
+            move(tabWrap[i], tabNav[i]);
 
-        };
+        }
 
-        function move(tabWrap) {
-            transformCss(tabWrap,'translateX', -translateX);
+        function move(tabWrap, tabNav) {
+            transformCss(tabWrap, 'translateZ', 0.1);
+            transformCss(tabNav, 'translateZ', 0.1);
+            transformCss(tabWrap, 'translateX', -translateX);
 
             //横向滑屏
             var eleX = 0;
@@ -436,22 +438,27 @@
             //loading标识
             var isLoad = false;
 
-            //loaddings
-            var loaddings = document.querySelectorAll('.tabLoading');
+            //小绿条
+            var smallG = tabNav.querySelector('span');
+            transformCss(smallG, 'translateZ', 0.1);
+            var nowA = 0;
+            var aNodes = tabNav.querySelectorAll('a');
 
-            tabWrap.addEventListener('touchstart', function(event){
+            //loaddings
+            var loaddings = tabWrap.querySelectorAll('.tabLoading');
+
+            tabWrap.addEventListener('touchstart', function (event) {
                 var touch = event.changedTouches[0];
 
                 if (isLoad) {
                     return;
-                } ;
+                }
 
-                //清楚过渡
+                //清除过渡
                 tabWrap.style.transition = 'none';
 
                 startX = touch.clientX;
-                eleX = transformCss(tabWrap,'translateX');
-
+                eleX = transformCss(tabWrap, 'translateX');
                 startY = touch.clientY;
 
                 //重置
@@ -464,7 +471,8 @@
 
                 if (isLoad) {
                     return;
-                } ;
+                }
+                ;
 
                 if (!isX) {
                     return;
@@ -492,50 +500,81 @@
 
                 //当手指划过1/2
                 if (Math.abs(disX) > translateX/2) {
-                    var target = disX > 0 ? 0 : -2*translateX;
+                    var target = disX > 0 ? 0 : -2 * translateX;
 
                     //loading标识出现
                     isLoad = true;
 
-                    tabWrap.style.transition = '0.5s';
+                    //小绿条
+                    //判断nowA出现范围
+                    if (disX < 0) {
+                        nowA = nowA + 1;
+                    } else if (disX > 0) {
+                        nowA = nowA - 1;
+                    }
 
+                    if (nowA > aNodes.length - 1) {
+                        nowA = 0;
+                    } else if (nowA < 0) {
+                        nowA = aNodes.length-1;
+                    }
+
+                    smallG.style.transition = '0.5s';
+                    transformCss(smallG, 'translateX', aNodes[nowA].offsetLeft);
+
+                    tabWrap.style.transition = '0.5s';
                     transformCss(tabWrap, 'translateX', target);
+
                 }
 
                 //过渡结束之后出现；兼容
-                tabWrap.addEventListener('transitionEnd', fun) ;
-                tabWrap.addEventListener('webkitTransitionEnd',fun);
+                tabWrap.addEventListener('transitionEnd', fun);
+                tabWrap.addEventListener('webkitTransitionEnd', fun);
 
                 function fun() {
                     for (var i = 0; i < loaddings.length; i++) {
                         loaddings[i].style.opacity = '1';
                     }
 
+                    //主题区域回来
+                    setTimeout(function () {
+
+                        tabWrap.style.transition = '0.2s';
+                        transformCss(tabWrap, 'translateX', -translateX);
+
+                        isLoad = false;
+                        for (var i = 0; i < loaddings.length; i++) {
+                            loaddings[i].style.opacity = '0';
+                        }
+
+                    }, 1000);
+
                     //解绑
                     tabWrap.removeEventListener('transitionEnd', fun);
-                    tabWrap.removeEventListener('webkitTransitionEnd',fun);
+                    tabWrap.removeEventListener('webkitTransitionEnd', fun);
 
                 }
 
             });
-            tabWrap.addEventListener('touchend', function(event){
-                    var touch = event.changedTouches[0];
+            tabWrap.addEventListener('touchend', function (event) {
+                var touch = event.changedTouches[0];
 
-                    if (isLoad) {
-                        return;
-                    } ;
+                if (isLoad) {
+                    return;
+                }
+                ;
 
-                    var endX = touch.clientX;
-                    var disX = endX - startX;
+                var endX = touch.clientX;
+                var disX = endX - startX;
 
-                    //手指没有划过1/2
-                    if (Math.abs(disX) < translateX/2) {
+                //手指没有划过1/2
+                if (Math.abs(disX) < translateX / 2) {
 
-                        //跳回当前页面
-                        tabWrap.style.transition = '0.2s';
-                        transformCss(tabWrap, 'translateX', -translateX);
+                    //跳回当前页面
+                    tabWrap.style.transition = '0.2s';
+                    transformCss(tabWrap, 'translateX', -translateX);
 
-                    }
+                }
 
             });
 
@@ -551,6 +590,8 @@
         //获取元素
         var wrap = document.getElementById('ban_wrap');
         var list = document.getElementById('ban_list');
+        transformCss(list, 'translateZ', 0.1);
+
         list.innerHTML += list.innerHTML;
         var liNodes = document.querySelectorAll('#ban_list li');
         var spanNoses = document.querySelectorAll('#ban_navs span');
@@ -688,22 +729,24 @@
         //自动轮播
         //模拟now
         auto();
-        function auto(){
+
+        function auto() {
             //清除定时器
             clearInterval(timer);
             timer = setInterval(function () {
 
                 //无缝
-                if (now == liNodes.length-1) {
-                    now = spanNoses.length-1;
-                };
+                if (now == liNodes.length - 1) {
+                    now = spanNoses.length - 1;
+                }
+                ;
                 //切换动作
                 //清除过渡
                 list.style.transition = 'none';
-                transformCss(list,'translateX', -now*document.documentElement.clientWidth);
+                transformCss(list, 'translateX', -now * document.documentElement.clientWidth);
 
                 //延时
-                setTimeout(function(){
+                setTimeout(function () {
                     now++;
                     list.style.transition = '0.5s';
                     transformCss(list, 'translateX', -now * document.documentElement.clientWidth);
@@ -713,7 +756,7 @@
                         spanNoses[i].className = '';
                     }
                     spanNoses[now % spanNoses.length].className = 'active';
-                },20);
+                }, 20);
 
             }, 1000);
 
@@ -733,17 +776,18 @@
 
             //误触
             liNodes[i].addEventListener('touchmove', function () {
-                
+
                 if (!this.isMove) {
 
                     this.isMove = true;
 
-                };
-                
+                }
+                ;
+
             });
 
             liNodes[i].addEventListener('touchend', function () {
-                
+
                 if (!this.isMove) {
 
                     //给每一个li添加className
@@ -771,6 +815,7 @@
     function navs() {
         var navsWrap = document.getElementById('navsWrap');
         var navsList = document.getElementById('navsList');
+        transformCss(navsList, 'translateZ', 0.1);
 
         //定义元素初始位置，手指初始位置
         var eleX = 0;

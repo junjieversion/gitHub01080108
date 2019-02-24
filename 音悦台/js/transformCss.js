@@ -21,18 +21,19 @@
 						case 'translate':
 						case 'translateX':
 						case 'translateY':
-							result = i + '('+ node.aaa[i] +'px) '; ///'translateX(200px)'
+                        case 'translateZ':
+                            result += i + '('+ node.aaa[i] +'px) '; ///'translateX(200px)'
 							break;
 						case 'scale':
 						case 'scaleX':
 						case 'scaleY':
-							result = i + '('+ node.aaa[i] +') ';//'scale(0.5)'
+							result += i + '('+ node.aaa[i] +') ';//'scale(0.5)'
 							break;
 						case 'rotate':
 						case 'skew':
 						case 'skewX':
 						case 'skewY':
-							result = i + '('+ node.aaa[i] +'deg) ';
+							result += i + '('+ node.aaa[i] +'deg) ';
 							break;
 					};
 					
