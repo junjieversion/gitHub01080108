@@ -20,6 +20,16 @@
             width: 100%;
         }
 
+        #scrollBar {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 4px;
+            height: 100%;
+            background: deeppink;
+            opacity: 0;
+        }
+
     </style>
 </head>
 <body>
@@ -27,6 +37,9 @@
     <div id="content">
 
     </div>
+</div>
+<div id="scrollBar">
+
 </div>
 </body>
 <script type="text/javascript" src="js/transformCss.js"></script>
@@ -36,16 +49,43 @@
         event.preventDefault();
     });
 
-    //造文本
     var content = document.getElementById('content');
     var wrap = document.getElementById('wrap');
+    var scrollBar = document.getElementById('scrollBar');
+
+    //造文本
     var text = '';
     for (var i = 0; i < 200; i++) {
         text += i +'<br>';
     };
     content.innerHTML = text;
 
-    navs(wrap);
+    //滚动条 --- 具体逻辑
+    //滚动条高度
+    var scale = document.documentElement.clientHeight/content.offsetHeight;
+    scrollBar.style.height = scale * document.documentElement.clientHeight + 'px'
+
+    var callback = {
+        start:function () {
+            console.log('start');
+            callback.style.opacity = '1';
+        },
+        move:function () {
+            console.log('move');
+            callback.style.opacity = '1';
+
+            //滚动条移动
+            //滚动条的偏移量 = 内容偏移量 * scale
+            var dis = transformCss(content, 'translateY') * scale;
+            transformCss(scrollBar, 'translateY', -dis);
+        },
+        end:function () {
+            console.log('end');
+            callback.style.opacity = '0';
+        }
+    }
+
+    navs(wrap,callback);
     // function navs() {
     //     var navsWrap = document.getElementById('wrap');
     //     var navsList = document.getElementById('content');

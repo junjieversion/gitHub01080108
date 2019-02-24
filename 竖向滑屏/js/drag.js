@@ -18,8 +18,26 @@
         var disTime = 1;
         var disValue = 0;
 
+        //tween
+        var Tween = {
+            //正常：匀速
+            Linear: function(t,b,c,d){ return c*t/d + b; },
+            //回弹
+            easeOut: function(t,b,c,d,s){
+                if (s == undefined) s = 1.70158;
+                return c*((t=t/d-1)*t*((s+1)*t + s) + 1) + b;
+            }
+
+        };
+        //定时器
+        var timer = 0;
+
+
         navsWrap.addEventListener("touchstart", function (event) {
             var touch = event.changedTouches[0];
+
+            //清除定时器    ---- 即点即停
+            clearInterval(timer);
 
             //清除过渡
             navsList.style.transition = 'none';
@@ -32,6 +50,11 @@
 
             //清除速度
             disValue = 0;
+
+            //状态
+            if(callback && callback['start']){
+                callback['start']();
+            };
 
         });
 
@@ -68,6 +91,12 @@
             disValue = endValue - beginValue;
             disTime = endTime - beginTime;
 
+            ///状态
+            if(callback && callback['move']){
+                callback['move']();
+            };
+
+
         });
 
         navsWrap.addEventListener("touchend", function (event) {
@@ -81,18 +110,62 @@
 
             var minY = document.documentElement.clientHeight - navsList.offsetHeight;
             //橡皮筋回弹效果
-            var bezier = '';
+            var type = 'Linear';
             if (target > 0) {
                 target = 0;
-                bezier = 'cubic-bezier(.09,1.61,.92,1.45)';
+                type = 'easeOut';
             } else if (target < minY) {
                 target = minY;
-                bezier = 'cubic-bezier(.09,1.61,.92,1.45)';
+                type = 'easeOut';
             }
 
-            navsList.style.transition = '2s ' + bezier;
-            transformCss(navsList, 'translateY', target);
+            //运动总时间
+            var time = '5';
+
+
+            //tween函数
+            moveTween(type,target,time);
+            /*navsList.style.transition = '2s ' + bezier;
+            transformCss(navsList, 'translateY', target);*/
 
         });
-    }
+        
+        function moveTween(type,target,time) {
+
+            var t = 0; //当前次数
+            var b = transformCss(navsList,'translateY'); //初始位置
+            var c = target - b ;//初始位置与结束位置之间的距离差
+            var d = time/0.01; //总次数
+
+            //模拟数据（定时器）
+            //清除定时器
+            clearInterval(timer);
+            timer = setInterval(function () {
+                t++;
+                
+                if (t > d) {
+                    //清除定时器
+                    clearInterval(timer);
+
+                    //状态
+                    if(callback && callback['end']){
+                        callback['end']();
+                    };
+
+                }else {
+                    //正常运动
+                    var point = Tween[type](t,b,c,d);
+                    console.log(point);
+                    transformCss(navsList, 'translateY', point);
+                    if(callback && callback['move']){
+                        callback['move']();
+                    };
+                };
+
+
+            },10);
+            
+            
+        };
+    };
 })(window);
