@@ -88,6 +88,7 @@
     </div>
 
     <!--内容区-->
+    <div id="conWrap">
     <div id="content">
         <!--导航-->
         <div id="navsWrap">
@@ -381,11 +382,15 @@
             </div>
         </div>
     </div>
+    </div>
 
+</div>
+<div id="scrollBar">
 
 </div>
 </body>
 <script type="text/javascript" src="js/transformCss.js"></script>
+<script type="text/javascript" src="js/drag.js"></script>
 <script type="text/javascript">
     document.addEventListener('touchstart', function (event) {
         event.preventDefault();
@@ -407,7 +412,41 @@
         changeColor();
         banner();
         tab();
+        drag();
     };
+
+    //竖向滑屏
+    function drag() {
+        var conWrap = document.getElementById('conWrap');
+        var scrollBar = document.getElementById('scrollBar');
+        var content = document.getElementById('content');
+
+        //滚动条高度
+        var scale = document.documentElement.clientHeight / content.offsetHeight;
+        scrollBar.style.height = scale * document.documentElement.clientHeight + 'px';
+
+        var callback = {
+            start:function () {
+                console.log('start');
+                scrollBar.style.opacity = '1';
+            },
+            move:function () {
+                console.log('move');
+                scrollBar.style.opacity = '1';
+
+                //滚动条移动
+                //滚动条的偏移量 = 内容偏移量 * scale
+                var dis = transformCss(content, 'translateY') * scale;
+                transformCss(scrollBar, 'translateY', -dis);
+            },
+            end:function () {
+                console.log('end');
+                scrollBar.style.opacity = '0';
+            }
+        }
+
+        dragnavs(conWrap,callback);
+    }
 
     //tab
     function tab() {

@@ -28,6 +28,7 @@ ul {
   right: 0;
   background: #232323;
   height: 4rem;
+  z-index: 500;
 }
 #headerTop {
   height: 2rem;
@@ -294,5 +295,15 @@ ul {
 .tabLoading {
   height: 1.4962963rem;
   background: url("../img/loading.gif") no-repeat center;
+  opacity: 0;
+}
+#scrollBar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 4px;
+  height: 100%;
+  background: gray;
+  z-index: 600;
   opacity: 0;
 }

@@ -36,6 +36,7 @@ ul {
   right: 0;
   background: #232323;
   height: 270/@rem;
+  z-index: 500;
 }
 
 #headerTop {
@@ -361,18 +362,16 @@ ul {
   opacity: 0;
 }
 
-//主体内容元素:
-//		box-sizing: border-box;
-//		宽:506
-//		外边距:8
-//		内边距:5
-//		字体大小:40
-//		背景颜色:#efefef
-//		字体颜色:#000
-//
-//	loading:
-//		高度:101
-//		透明度:0
+#scrollBar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 4px;
+  height: 100%;
+  background: gray;
+  z-index: 600;
+  opacity: 0;
+}
 
 
 

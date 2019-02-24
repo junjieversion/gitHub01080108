@@ -68,11 +68,11 @@
     var callback = {
         start:function () {
             console.log('start');
-            callback.style.opacity = '1';
+            scrollBar.style.opacity = '1';
         },
         move:function () {
             console.log('move');
-            callback.style.opacity = '1';
+            scrollBar.style.opacity = '1';
 
             //滚动条移动
             //滚动条的偏移量 = 内容偏移量 * scale
@@ -81,7 +81,7 @@
         },
         end:function () {
             console.log('end');
-            callback.style.opacity = '0';
+            scrollBar.style.opacity = '0';
         }
     }
 

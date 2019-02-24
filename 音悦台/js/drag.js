@@ -1,5 +1,5 @@
 (function (w) {
-    w.navs = function (navsWrap) {
+    w.dragnavs = function (navsWrap,callback) {
         // var navsWrap = document.getElementById('wrap');
         // var navsList = document.getElementById('content');
         var navsList = navsWrap.children[0];
@@ -60,7 +60,7 @@
             //状态
             if(callback && callback['start']){
                 callback['start']();
-            };
+            }
 
             isX = true;
             isFirst = true;
@@ -123,7 +123,7 @@
             ///状态
             if(callback && callback['move']){
                 callback['move']();
-            };
+            }
 
 
         });
@@ -149,7 +149,7 @@
             }
 
             //运动总时间
-            var time = '5';
+            var time = '1';
 
 
             //tween函数
@@ -179,7 +179,7 @@
                     //状态
                     if(callback && callback['end']){
                         callback['end']();
-                    };
+                    }
 
                 }else {
                     //正常运动
@@ -188,7 +188,7 @@
                     transformCss(navsList, 'translateY', point);
                     if(callback && callback['move']){
                         callback['move']();
-                    };
+                    }
                 };
 
 
