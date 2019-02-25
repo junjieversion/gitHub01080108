@@ -66,7 +66,7 @@
             height: 4rem;
             text-align: center;
             line-height: 4rem;
-            background: pink;
+            /*background: pink;*/
         }
 
     </style>
@@ -103,7 +103,7 @@
     window.onload = function () {
         //模拟后台数据
         var urlArr = [];
-        for (var i = 0; i < 100; i++) {
+        for (var i = 0; i < 20; i++) {
             urlArr.push('img/' + (i % 18 + 1) + '.jpg');
         };
 
@@ -121,6 +121,9 @@
         //判断footer是否在底部
         var isBttom = false;
 
+        //加载完成底部
+        var isEnd = false;
+
         //创建li
         var length = 12;
         //记录li开始数量
@@ -128,8 +131,28 @@
 
         createLi();
         function createLi() {
+
+            //范围限定li
+            if (start > urlArr.length) {
+
+                footer.innerHTML = '加载完了';
+
+
+                //真正结尾的逻辑
+                setTimeout(function(){
+                    var minH = content.offsetHeight - wrap.clientHeight;
+                    content.style.transition = '1s';
+                    transformCss(content,'translateY',-minH);
+                },2000);
+
+
+                return;
+            }
+
             //记录li每次创建总数
             var end = start + length;
+
+            end = end > urlArr.length ? urlArr.length : end;
 
             for (var i = start; i < end; i++) {
                 var li = document.createElement('li');
@@ -204,6 +227,8 @@
                     
                     transformCss(footer, 'scale', footerScale);
 
+                }else {
+                    transformCss(footer, 'scale', 0);
                 }
 
                 //懒加载
@@ -216,12 +241,20 @@
                 //footer完全被拉出来
                 var minH = content.offsetHeight - wrap.clientHeight;
                 var translateY = transformCss(content, 'translateY');
-                if (isBttom && (Math.abs(translateY) - minH) >= footerH) {
+                if (!isEnd && isBttom && (Math.abs(translateY) - minH) >= footerH) {
 
                     //创建li
                     createLi();
                     //清楚定时器 ----不让回弹
                     clearInterval(wrap.timer);
+
+                    //重置
+                    isBttom = false;
+                    isEnd = true;
+                    if (isEnd) {
+                        transformCss(footer, 'scale', 1);
+                        isEnd = false;
+                    }
 
                 }
 
