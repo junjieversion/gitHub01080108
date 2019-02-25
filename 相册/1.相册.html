@@ -209,6 +209,22 @@
                 //懒加载
                 lazyLoad();
 
+            },
+            over:function () {
+
+                //保证在底部
+                //footer完全被拉出来
+                var minH = content.offsetHeight - wrap.clientHeight;
+                var translateY = transformCss(content, 'translateY');
+                if (isBttom && (Math.abs(translateY) - minH) >= footerH) {
+
+                    //创建li
+                    createLi();
+                    //清楚定时器 ----不让回弹
+                    clearInterval(wrap.timer);
+
+                }
+
             }
 
 

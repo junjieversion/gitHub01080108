@@ -30,7 +30,7 @@
 
         };
         //定时器
-        var timer = 0;
+        // var timer = 0;
 
         var startX = 0;
         var isFirst = true;
@@ -41,7 +41,7 @@
             var touch = event.changedTouches[0];
 
             //清除定时器    ---- 即点即停
-            clearInterval(timer);
+            clearInterval(navsWrap.timer);
 
             //清除过渡
             navsList.style.transition = 'none';
@@ -157,6 +157,10 @@
             /*navsList.style.transition = '2s ' + bezier;
             transformCss(navsList, 'translateY', target);*/
 
+            if (callback && callback['over']) {
+                callback['over']();
+            }
+
         });
         
         function moveTween(type,target,time) {
@@ -168,13 +172,13 @@
 
             //模拟数据（定时器）
             //清除定时器
-            clearInterval(timer);
-            timer = setInterval(function () {
+            clearInterval(navsWrap.timer);
+            navsWrap.timer = setInterval(function () {
                 t++;
                 
                 if (t > d) {
                     //清除定时器
-                    clearInterval(timer);
+                    clearInterval(navsWrap.timer);
 
                     //状态
                     if(callback && callback['end']){
