@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no"/>
+    <title>我的相册</title>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        html,body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        #header {
+            width: 100%;
+            height: 2rem;
+            line-height: 2rem;
+            background: #333333;
+            color: #FFFFFF;
+            font-size: 0.8rem;
+            font-family: '宋体';
+            text-align: center;
+        }
+
+        #wrap {
+            position: absolute;
+            top: 2rem;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+        }
+
+        #list {
+            overflow: hidden;
+            list-style: none;
+        }
+
+        #list li {
+            float: left;
+            width: 7rem;
+            height: 7rem;
+            margin: 0.5rem;
+        }
+
+        #list li img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+    </style>
+</head>
+<body>
+<div id="header">三国女将</div>
+<div id="wrap">
+    <div id="content">
+        <ul id="list">
+            <!--<li>
+                <img src="img/1.jpg">
+            </li>-->
+        </ul>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="js/transformCss.js"></script>
+<script type="text/javascript" src="js/drag.js"></script>
+<script type="text/javascript">
+    //禁止系统默认行为
+    document.addEventListener("touchstart", function(event){
+        event.preventDefault();/*return false*/
+    });
+
+    //rem适配
+    (function(){
+        var width = document.documentElement.clientWidth;
+        var styleN = document.createElement('style');
+        styleN.innerHTML = 'html {font-size: '+ width/16 +'px !important;}'
+        document.head.appendChild(styleN);
+    })();
+
+    window.onload = function () {
+        //模拟后台数据
+        var urlArr = [];
+        for (var i = 0; i < 100; i++) {
+            urlArr.push('img/' + (i % 18 + 1) + '.jpg');
+        };
+
+        //获取元素
+        var list = document.getElementById('list');
+        var header = document.getElementById('header');
+        var wrap = document.getElementById('wrap');
+
+        //创建li
+        var length = 12;
+        //记录li开始数量
+        var start = 0;
+
+        createLi();
+        function createLi() {
+            //记录li每次创建总数
+            var end = start + length;
+
+            for (var i = start; i < end; i++) {
+                var li = document.createElement('li');
+                li.isload = false;
+                li.src = urlArr[i];
+                list.appendChild(li);
+            };
+            start = end;
+
+            lazyLoad();
+
+        };
+
+        function lazyLoad() {
+
+            var minT = header.offsetHeight;
+            var maxT = document.documentElement.clientHeight;
+
+            //获取li
+            var liNodes = document.querySelectorAll('#list li');
+
+            for (var i = 0; i < liNodes.length; i++) {
+
+                var top = liNodes[i].getBoundingClientRect().top;
+
+                //懒加载条件
+                if (!liNodes[i].isload && top < maxT && top > minT) {
+                    //添加图片
+                    createImg(liNodes[i]);
+                    liNodes[i].isload = true;
+
+                };
+
+            };
+
+        };
+
+        function createImg(li) {
+            //创建image对象
+            var img = new Image();
+            img.src = li.src;
+            li.appendChild(img);
+        };
+
+        //动起来
+        var callback = {
+            move:function(){
+                //懒加载
+                lazyLoad();
+            }
+
+
+        };
+
+        dragnavs(wrap,callback);
+
+
+    };
+
+
+</script>
+
+</html>
