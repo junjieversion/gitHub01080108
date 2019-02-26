@@ -45,7 +45,7 @@
         },
         change:function (event) {
             // box.innerHTML += 'change<br>';
-            transformCss(box,'scale', scale);
+            transformCss(box,'scale', event.scale);
         },
         end:function () {
             box.innerHTML = '';
