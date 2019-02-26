@@ -1,69 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable"/>
-    <title>Title</title>
-    <script>
-
-    </script>
-    <style type="text/css">
-        * {
-            padding: 0;
-            margin: 0;
-        }
-
-        html,body{
-            height: 100%;
-            overflow: hidden;
-        }
-
-        #box {
-            width: 200px;
-            height: 200px;
-            background: deeppink;
-        }
-
-    </style>
-</head>
-<body>
-<div id="box">
-
-</div>
-</body>
-<script type="text/javascript">
-    document.addEventListener("touchstart", function (event) {
-        event.preventDefault();
-    });
-
-    var box = document.getElementById('box');
-
-    //逻辑事件
-    var scaleC = 0;
-    var rotateD = 0;
-
-    var callback = {
-
-        start:function () {
-
-            scaleC = transformCss(box, 'scale');
-            rotateD = transformCss(box, 'rotate');
-        },
-        change:function (event) {
-
-            //盒子缩放
-            transformCss(box,'scale', scaleC * event.scale);
-
-            //盒子旋转
-            transformCss(box, 'rotate', rotateD + event.rotation);
-
-        }
-
-    };
-
-    //模拟多指事件
-    gestur(box,callback);
-    function gestur(node,callback) {
+(function (w) {
+    w.gestur = function (node,callback) {
 
         var flag = false;
 
@@ -148,7 +84,7 @@
             return c;
 
         }
-        
+
         //求角度
         function getD(p1,p2) {
             var Y = p1.clientY - p2.clientY;
@@ -164,5 +100,4 @@
 
     }
 
-</script>
-</html>
+})(window);

@@ -15,7 +15,7 @@
             overflow: hidden;
         }
 
-        #header {
+        #header,#bigH {
             width: 100%;
             height: 2rem;
             line-height: 2rem;
@@ -79,6 +79,33 @@
             opacity: 0;
         }
 
+        #bigImg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: #EEEEEE;
+            transform: scale(0);
+            transition: 1s transform;
+        }
+
+        #bigImg a {
+            float: right;
+            text-decoration: none;
+            margin-right: 10px;
+            color: #FFFFFF;
+        }
+
+        #bigImg img {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 12rem;
+            height: 12rem;
+            margin: -6rem 0 0 -6rem;
+        }
+
     </style>
 </head>
 <body>
@@ -94,9 +121,17 @@
     </div>
     <div id="scrollBar"></div>
 </div>
+<div id="bigImg">
+    <div id="bigH">
+        大图预览
+        <a href="###" id="close">×</a>
+    </div>
+    <img />
+</div>
 </body>
 <script type="text/javascript" src="js/transformCss.js"></script>
 <script type="text/javascript" src="js/drag.js"></script>
+<script type="text/javascript" src="js/tool.js"></script>
 <script type="text/javascript">
     //禁止系统默认行为
     document.addEventListener("touchstart", function(event){
@@ -127,6 +162,18 @@
         var footer = document.getElementById('footer');
         var footerH = footer.offsetHeight;
         var scrollBar = document.getElementById('scrollBar');
+        var bigImg = document.getElementById('bigImg');
+        var close = document.getElementById('close');
+        var imgSrc = document.querySelector('#bigImg img');
+
+        //隐藏bigImg
+        // bigImg.style.transition = '1s';
+        // transformCss(bigImg, 'scale', 0);
+        close.addEventListener("touchend", function () {
+
+            transformCss(bigImg, 'scale', 0);
+
+        });
 
         //隐藏footer
         transformCss(footer, 'scale', 0);
@@ -175,6 +222,40 @@
                 var li = document.createElement('li');
                 li.isload = false;
                 li.src = urlArr[i];
+
+                li.addEventListener("touchmove", function () {
+
+                    if (!this.isMove) {
+                        this.isMove = true;
+                    }
+
+                });
+
+
+                //li绑定touchend
+                li.addEventListener("touchend", function() {
+
+                    if (!this.isMove) {
+
+                        //变换基点
+                        var left = this.getBoundingClientRect().left;
+                        var top = this.getBoundingClientRect().top;
+
+                        bigImg.style.transformOrigin = left + 'px '+top + 'px';
+
+                        // 添加图片
+                        imgSrc.src = this.src;
+
+                        //大图出来
+                        transformCss(bigImg, 'scale', 1);
+
+                    }
+
+                    //重置
+                    this.isMove = false;
+
+                });
+
                 list.appendChild(li);
 
             }
@@ -311,6 +392,37 @@
         };
 
         dragnavs(wrap,callback);
+
+        //大图旋转和缩放
+        gesTureImg();
+        function gesTureImg() {
+
+            //逻辑事件
+            var scaleC = 0;
+            var rotateD = 0;
+
+            var callback = {
+
+                start:function () {
+
+                    scaleC = transformCss(imgSrc, 'scale');
+                    rotateD = transformCss(imgSrc, 'rotate');
+                },
+                change:function (event) {
+
+                    //盒子缩放
+                    transformCss(imgSrc,'scale', scaleC * event.scale);
+
+                    //盒子旋转
+                    transformCss(imgSrc, 'rotate', rotateD + event.rotation);
+
+                }
+
+            };
+            gestur(imgSrc,callback);
+
+        };
+
 
     };
 </script>
