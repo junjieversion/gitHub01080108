@@ -69,6 +69,16 @@
             /*background: pink;*/
         }
 
+        #scrollBar {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 4px;
+            height: 100%;
+            background: deeppink;
+            opacity: 0;
+        }
+
     </style>
 </head>
 <body>
@@ -82,6 +92,7 @@
         </ul>
         <div id="footer">上滑加载更多内容</div>
     </div>
+    <div id="scrollBar"></div>
 </div>
 </body>
 <script type="text/javascript" src="js/transformCss.js"></script>
@@ -96,16 +107,17 @@
     (function(){
         var width = document.documentElement.clientWidth;
         var styleN = document.createElement('style');
-        styleN.innerHTML = 'html {font-size: '+ width/16 +'px !important;}'
+        styleN.innerHTML = 'html {font-size: '+ width/16 +'px !important;}';
         document.head.appendChild(styleN);
     })();
 
     window.onload = function () {
+
         //模拟后台数据
         var urlArr = [];
         for (var i = 0; i < 20; i++) {
             urlArr.push('img/' + (i % 18 + 1) + '.jpg');
-        };
+        }
 
         //获取元素
         var list = document.getElementById('list');
@@ -114,18 +126,20 @@
         var wrap = document.getElementById('wrap');
         var footer = document.getElementById('footer');
         var footerH = footer.offsetHeight;
+        var scrollBar = document.getElementById('scrollBar');
 
         //隐藏footer
         transformCss(footer, 'scale', 0);
 
         //判断footer是否在底部
-        var isBttom = false;
+        var isBottom = false;
 
         //加载完成底部
         var isEnd = false;
 
         //创建li
         var length = 12;
+
         //记录li开始数量
         var start = 0;
 
@@ -137,16 +151,18 @@
 
                 footer.innerHTML = '加载完了';
 
-
                 //真正结尾的逻辑
                 setTimeout(function(){
+
                     var minH = content.offsetHeight - wrap.clientHeight;
                     content.style.transition = '1s';
-                    transformCss(content,'translateY',-minH);
-                },2000);
+                    transformCss(content,'translateY', -minH);
+                    scrollBar.style.opacity = '0';
 
+                },200);
 
                 return;
+
             }
 
             //记录li每次创建总数
@@ -155,16 +171,18 @@
             end = end > urlArr.length ? urlArr.length : end;
 
             for (var i = start; i < end; i++) {
+
                 var li = document.createElement('li');
                 li.isload = false;
                 li.src = urlArr[i];
                 list.appendChild(li);
-            };
+
+            }
             start = end;
 
             lazyLoad();
 
-        };
+        }
 
         function lazyLoad() {
 
@@ -184,13 +202,14 @@
                     createImg(liNodes[i]);
                     liNodes[i].isload = true;
 
-                };
+                }
 
-            };
+            }
 
-        };
+        }
 
         function createImg(li) {
+
             //创建image对象
             var img = new Image();
             img.src = li.src;
@@ -198,7 +217,12 @@
                 img.style.opacity = '1';
             };
             li.appendChild(img);
-        };
+
+        }
+
+        //滚动条高度
+        var scale = wrap.clientHeight / content.offsetHeight;
+        scrollBar.style.height = wrap.clientHeight * scale + 'px';
 
         //动起来
         var callback = {
@@ -208,23 +232,25 @@
                 //isBttom==tre footer正在底部
                 var minH = content.offsetHeight - wrap.clientHeight;
                 var translateY = transformCss(content, 'translateY');
-                
+
                 if (Math.abs(translateY) >= minH) {
-                    isBttom = true;
+                    isBottom = true;
                 }
+
+                scrollBar.style.opacity = '1';
 
             },
             move:function(){
 
                 //footer可以出来了
-                if (isBttom) {
+                if (isBottom) {
 
                     var minH = content.offsetHeight - wrap.clientHeight;
                     var translateY = transformCss(content, 'translateY');
                     var footerScale = (Math.abs(translateY) - minH)/footerH;
 
                     footerScale = footerScale > 1 ? 1 : footerScale;
-                    
+
                     transformCss(footer, 'scale', footerScale);
 
                 }else {
@@ -234,6 +260,15 @@
                 //懒加载
                 lazyLoad();
 
+                scrollBar.style.opacity = '1';
+
+                //滚动条动起来
+                //内容区偏移量 = 滚动条偏移量 / scale
+                var scale = wrap.clientHeight / content.offsetHeight;
+                var dis = transformCss(content, 'translateY')*scale;
+                transformCss(scrollBar, 'translateY', -dis);
+
+
             },
             over:function () {
 
@@ -241,34 +276,42 @@
                 //footer完全被拉出来
                 var minH = content.offsetHeight - wrap.clientHeight;
                 var translateY = transformCss(content, 'translateY');
-                if (!isEnd && isBttom && (Math.abs(translateY) - minH) >= footerH) {
-
+                if(!isEnd && isBottom && (Math.abs(translateY) - minH)>=footerH){
                     //创建li
                     createLi();
-                    //清楚定时器 ----不让回弹
+                    //清除定时器  --- 不让回弹
                     clearInterval(wrap.timer);
 
+
+
                     //重置
-                    isBttom = false;
+                    isBottom = false;
                     isEnd = true;
-                    if (isEnd) {
-                        transformCss(footer, 'scale', 1);
+
+                    if(isEnd){
+                        console.log(1111111111);
+                        transformCss(footer,'scale',1);
+                        //重置 ，为了第二次操作
                         isEnd = false;
                     }
+                };
 
-                }
+                //滚动条高度
+
+                var scale = wrap.clientHeight / content.offsetHeight;
+                scrollBar.style.height = wrap.clientHeight * scale + 'px';
+
+            },
+            end:function () {
+
+                scrollBar.style.opacity = '0';
 
             }
-
 
         };
 
         dragnavs(wrap,callback);
 
-
     };
-
-
 </script>
-
 </html>
